@@ -37,7 +37,7 @@ Items marked **(planned)** do not exist yet.
 │           │               ├── trends/    Six trend cards and their charts
 │           │               └── details/   Hydraulics, solids analysis, recent reports
 │           ├── components/
-│           │   ├── ui/           shadcn and Animate UI primitives (button, calendar, popover)
+│           │   ├── ui/           shadcn and Animate UI primitives (button, dropdown-menu, toast)
 │           │   └── common/       Components shared by several routes (logo, select-pill, api-status)
 │           └── lib/              api-client.ts: typed Eden client for the API
 ├── docs/
