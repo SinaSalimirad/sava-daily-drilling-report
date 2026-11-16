@@ -48,7 +48,7 @@ export function SelectPill({
       <DropdownMenuTrigger
         className={buttonVariants({
           variant: "outline",
-          className: "rounded-full border-0 bg-background text-sm",
+          className: "rounded-full border-0 bg-card text-sm",
         })}
       >
         {Icon && <Icon />}

@@ -41,7 +41,7 @@ export function ShareBarChart({
               y: () => "all",
               z: "label",
               fill: (part) => part.fill,
-              stroke: "var(--background)",
+              stroke: "var(--card)",
               strokeWidth: 2,
               radius: 4,
             },

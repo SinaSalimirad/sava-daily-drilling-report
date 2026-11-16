@@ -15,7 +15,7 @@ const levelIcon: Record<
   warning: {
     icon: TriangleAlertIcon,
     label: "Warning",
-    className: "text-amber-500",
+    className: "text-status-warning",
   },
   info: { icon: InfoIcon, label: "Notice", className: "text-muted-foreground" },
 };

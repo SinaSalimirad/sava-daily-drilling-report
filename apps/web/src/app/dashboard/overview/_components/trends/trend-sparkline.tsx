@@ -40,7 +40,7 @@ export function TrendSparkline({
           y: "value",
           r: 5,
           fill: color,
-          stroke: "var(--background)",
+          stroke: "var(--card)",
           strokeWidth: 2,
         }),
       ],

@@ -47,7 +47,7 @@ export function KpiRow() {
         footer={
           <span className="flex items-center gap-1.5">
             <TriangleAlertIcon
-              className="size-3.5 text-amber-500"
+              className="size-3.5 text-status-warning"
               aria-hidden
             />
             <strong className={strong}>{kpis.mudWeight.delta}</strong>

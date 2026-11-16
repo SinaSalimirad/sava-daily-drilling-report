@@ -31,6 +31,11 @@
   --color-series-5: var(--series-5);
   --color-series-6: var(--series-6);
   --color-series-7: var(--series-7);
+  --color-series-8: var(--series-8);
+  --color-status-good: var(--status-good);
+  --color-status-warning: var(--status-warning);
+  --color-status-serious: var(--status-serious);
+  --color-status-critical: var(--status-critical);
   --color-viz-other: var(--viz-other);
   --color-viz-grid: var(--viz-grid);
   --color-viz-good: var(--viz-good);
@@ -61,29 +66,29 @@
 }
 
 :root {
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.145 0 0);
-  --card: oklch(1 0 0);
-  --card-foreground: oklch(0.145 0 0);
-  --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.145 0 0);
-  --primary: oklch(0.205 0 0);
-  --primary-foreground: oklch(0.985 0 0);
-  --secondary: oklch(0.97 0 0);
-  --secondary-foreground: oklch(0.205 0 0);
-  --muted: oklch(0.97 0 0);
-  --muted-foreground: oklch(0.556 0 0);
-  --accent: oklch(0.97 0 0);
-  --accent-foreground: oklch(0.205 0 0);
-  --destructive: oklch(0.577 0.245 27.325);
-  --border: oklch(0.922 0 0);
-  --input: oklch(0.922 0 0);
-  --ring: oklch(0.708 0 0);
-  --chart-1: oklch(0.87 0 0);
-  --chart-2: oklch(0.556 0 0);
-  --chart-3: oklch(0.439 0 0);
-  --chart-4: oklch(0.371 0 0);
-  --chart-5: oklch(0.269 0 0);
+  --background: #f4f4f2;
+  --foreground: #0b0b0b;
+  --card: #ffffff;
+  --card-foreground: #0b0b0b;
+  --popover: #ffffff;
+  --popover-foreground: #0b0b0b;
+  --primary: #111110;
+  --primary-foreground: #ffffff;
+  --secondary: #e8e7e1;
+  --secondary-foreground: #52514e;
+  --muted: #e8e7e1;
+  --muted-foreground: #898781;
+  --accent: #e8e7e1;
+  --accent-foreground: #0b0b0b;
+  --destructive: #d03b3b;
+  --border: rgba(11, 11, 11, 0.1);
+  --input: rgba(11, 11, 11, 0.1);
+  --ring: #898781;
+  --chart-1: var(--series-1);
+  --chart-2: var(--series-2);
+  --chart-3: var(--series-3);
+  --chart-4: var(--series-4);
+  --chart-5: var(--series-5);
   --radius: 0.625rem;
   --sidebar: oklch(0.985 0 0);
   --sidebar-foreground: oklch(0.145 0 0);
@@ -96,29 +101,29 @@
 }
 
 .dark {
-  --background: oklch(0.145 0 0);
-  --foreground: oklch(0.985 0 0);
-  --card: oklch(0.205 0 0);
-  --card-foreground: oklch(0.985 0 0);
-  --popover: oklch(0.205 0 0);
-  --popover-foreground: oklch(0.985 0 0);
-  --primary: oklch(0.922 0 0);
-  --primary-foreground: oklch(0.205 0 0);
-  --secondary: oklch(0.269 0 0);
-  --secondary-foreground: oklch(0.985 0 0);
-  --muted: oklch(0.269 0 0);
-  --muted-foreground: oklch(0.708 0 0);
-  --accent: oklch(0.269 0 0);
-  --accent-foreground: oklch(0.985 0 0);
-  --destructive: oklch(0.704 0.191 22.216);
-  --border: oklch(1 0 0 / 10%);
-  --input: oklch(1 0 0 / 15%);
-  --ring: oklch(0.556 0 0);
-  --chart-1: oklch(0.87 0 0);
-  --chart-2: oklch(0.556 0 0);
-  --chart-3: oklch(0.439 0 0);
-  --chart-4: oklch(0.371 0 0);
-  --chart-5: oklch(0.269 0 0);
+  --background: #0d0d0d;
+  --foreground: #f0efec;
+  --card: #1a1a19;
+  --card-foreground: #f0efec;
+  --popover: #1a1a19;
+  --popover-foreground: #f0efec;
+  --primary: #f0efec;
+  --primary-foreground: #0d0d0d;
+  --secondary: #2c2c2a;
+  --secondary-foreground: #c3c2b7;
+  --muted: #2c2c2a;
+  --muted-foreground: #898781;
+  --accent: #2c2c2a;
+  --accent-foreground: #f0efec;
+  --destructive: #d03b3b;
+  --border: rgba(255, 255, 255, 0.1);
+  --input: rgba(255, 255, 255, 0.1);
+  --ring: #898781;
+  --chart-1: var(--series-1);
+  --chart-2: var(--series-2);
+  --chart-3: var(--series-3);
+  --chart-4: var(--series-4);
+  --chart-5: var(--series-5);
   --sidebar: oklch(0.205 0 0);
   --sidebar-foreground: oklch(0.985 0 0);
   --sidebar-primary: oklch(0.488 0.243 264.376);
@@ -141,18 +146,23 @@
   }
 }
 
-/* Chart colors. The categorical order is fixed (blue, orange, aqua, yellow,
-   magenta, green, violet) and was validated for color-blind safety as a set. */
+/* Chart colors. The categorical order is fixed and never cycled: a series keeps
+   its slot when a filter changes the series count. Slot 8 is reserved. The seven
+   slots in use were validated for lightness, chroma and color-blind separation
+   (worst adjacent difference 9.1) in both modes. Dark values are their own
+   steps against the dark surface, not an inverted light palette. */
 :root {
-  --series-1: #2a78d6;
-  --series-2: #eb6834;
-  --series-3: #1baf7a;
-  --series-4: #eda100;
-  --series-5: #e87ba4;
-  --series-6: #008300;
-  --series-7: #6250d6;
+  --series-1: #2a78d6; /* primary measure: active pits, bit loss, water, barite */
+  --series-2: #eb6834; /* losses, drill pipe, KCl */
+  --series-3: #1baf7a; /* reserve, additions, motor */
+  --series-4: #eda100; /* annulus, salt */
+  --series-5: #e87ba4; /* collars */
+  --series-6: #008300; /* surface equipment */
+  --series-7: #6250d6; /* in-hole volume, HWDP */
+  --series-8: #e34948; /* reserved */
   --viz-other: #c3c2b7;
-  --viz-grid: #e1e0d9;
+  --viz-grid: #e8e7e1;
+  /* Text-safe green and red for deltas and verdicts. */
   --viz-good: #006300;
   --viz-bad: #d03b3b;
 }
@@ -165,8 +175,19 @@
   --series-5: #d55181;
   --series-6: #0ca30c;
   --series-7: #9085e9;
+  --series-8: #e66767;
   --viz-other: #4a4945;
   --viz-grid: #2c2c2a;
   --viz-good: #0ca30c;
   --viz-bad: #e66767;
+}
+
+/* Status colors are fixed in both modes and never used as a series. Always show
+   one with an icon and a word, because warning and serious are low contrast on
+   a light surface. */
+:root {
+  --status-good: #0ca30c;
+  --status-warning: #fab219;
+  --status-serious: #ec835a;
+  --status-critical: #d03b3b;
 }

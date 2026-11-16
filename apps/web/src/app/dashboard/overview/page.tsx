@@ -7,7 +7,7 @@ import { TrendsSection } from "@/app/dashboard/overview/_components/trends/trend
 
 export default function OverviewPage() {
   return (
-    <main className="flex flex-1 flex-col gap-4 bg-muted/50 px-10 py-3">
+    <main className="flex flex-1 flex-col gap-4 px-10 py-3">
       <DashboardBreadcrumb />
       <OverviewToolbar />
       <ReportInfoBar />
