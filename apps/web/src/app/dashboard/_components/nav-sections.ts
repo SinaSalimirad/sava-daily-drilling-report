@@ -1,15 +1,16 @@
 "use client";
 
 import {
+  BoxesIcon,
   ChartNoAxesCombinedIcon,
-  CreditCardIcon,
+  ClipboardListIcon,
+  CylinderIcon,
+  DatabaseIcon,
+  DropletsIcon,
   FlaskConicalIcon,
   LayoutDashboardIcon,
-  LifeBuoyIcon,
   type LucideIcon,
-  MegaphoneIcon,
   SettingsIcon,
-  UsersIcon,
 } from "lucide-react";
 import { usePathname } from "next/navigation";
 
@@ -31,7 +32,7 @@ export const sections: NavSection[] = [
   {
     label: "Daily Reports",
     href: "/daily-reports",
-    icon: MegaphoneIcon,
+    icon: ClipboardListIcon,
     items: ["Report list", "Report editor", "Activities", "Remarks"],
   },
   {
@@ -43,19 +44,19 @@ export const sections: NavSection[] = [
   {
     label: "Volumes & Pits",
     href: "/volumes-&-pits",
-    icon: SettingsIcon,
+    icon: CylinderIcon,
     items: ["Pit readings", "Volume accounting", "Losses"],
   },
   {
     label: "Inventory & Cost",
     href: "/inventory-&-Cost",
-    icon: CreditCardIcon,
+    icon: BoxesIcon,
     items: ["Stock", "Products used", "Price list", "Cost"],
   },
   {
     label: "Hydraulics",
     href: "/hydraulics",
-    icon: CreditCardIcon,
+    icon: DropletsIcon,
     items: [
       "Wellbore geometry",
       "BHA & bit",
@@ -67,13 +68,13 @@ export const sections: NavSection[] = [
   {
     label: "Recap",
     href: "/recap",
-    icon: CreditCardIcon,
+    icon: ChartNoAxesCombinedIcon,
     items: ["Section recap", "Well recap", "Charts"],
   },
   {
     label: "Master Data",
     href: "/master-data",
-    icon: LifeBuoyIcon,
+    icon: DatabaseIcon,
     items: [
       "Project",
       "Wells",

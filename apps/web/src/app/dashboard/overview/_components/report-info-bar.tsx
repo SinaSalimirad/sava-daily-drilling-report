@@ -11,7 +11,7 @@ const report = {
     { label: "Operator Rep.", value: "A. Rahimi, M. Karimi" },
     { label: "Contractor Rep.", value: "R. Sadeghi, H. Nouri" },
     { label: "Spud", value: "28 Jul 2026 · day 23" },
-    { label: "Section", value: "12¼″ · KCl / Polymer" },
+    { label: "Mud Type", value: "NaCl Brine" },
   ],
   status: "Draft",
   revision: 4,
