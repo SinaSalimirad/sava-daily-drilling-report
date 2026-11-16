@@ -7,25 +7,38 @@ import { scaleLinear } from "@tanstack/charts/scales/linear";
 import { tooltip } from "@tanstack/charts/tooltip";
 import { useMemo } from "react";
 
-type Pit = { name: string; volume: number; fill: string };
+export type RowBar = {
+  name: string;
+  // Length of the bar. Always positive: a loss is drawn as a length too.
+  value: number;
+  // The text a reader sees for this row, for example "+190" or "−188".
+  display: string;
+  // A CSS color, for example "var(--series-1)".
+  fill: string;
+};
 
-export const PIT_ROW_HEIGHT = 32;
+export const ROW_HEIGHT = 32;
 
-// One thin bar per pit on a gray track. The names are the y axis; the volumes
-// are printed by the card, in rows of the same height.
-export function PitBarsChart({
-  pits,
+// One thin bar per row on a gray track. The names are the y axis; the values
+// are printed by the card, in rows of the same height (ROW_HEIGHT).
+export function RowBarsChart({
+  rows,
   capacity,
+  ariaLabel,
+  rowHeight = ROW_HEIGHT,
 }: {
-  pits: Pit[];
+  rows: RowBar[];
+  // The value at which the bar fills its track.
   capacity: number;
+  ariaLabel: string;
+  rowHeight?: number;
 }) {
   const definition = useMemo(
     () =>
       defineChart({
         margin: { top: 0, bottom: 0, right: 0 },
         marks: [
-          barX(pits, {
+          barX(rows, {
             x1: 0,
             x2: capacity,
             y: "name",
@@ -33,11 +46,11 @@ export function PitBarsChart({
             radius: 4,
             maxThickness: 8,
           }),
-          barX(pits, {
+          barX(rows, {
             x1: 0,
-            x2: "volume",
+            x2: "value",
             y: "name",
-            fill: (pit) => pit.fill,
+            fill: (row) => row.fill,
             radius: 4,
             maxThickness: 8,
           }),
@@ -55,17 +68,17 @@ export function PitBarsChart({
         },
         tooltip: {
           use: tooltip,
-          format: ({ datum }) => `${datum.name}: ${datum.volume}`,
+          format: ({ datum }) => `${datum.name}: ${datum.display}`,
         },
       }),
-    [pits, capacity],
+    [rows, capacity],
   );
 
   return (
     <Chart
       definition={definition}
-      height={pits.length * PIT_ROW_HEIGHT}
-      ariaLabel="Volume in each surface pit"
+      height={rows.length * rowHeight}
+      ariaLabel={ariaLabel}
     />
   );
 }

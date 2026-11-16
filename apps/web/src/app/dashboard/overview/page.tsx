@@ -2,6 +2,7 @@ import { DashboardBreadcrumb } from "@/app/dashboard/_components/dashboard-bread
 import { DetailsSection } from "@/app/dashboard/overview/_components/details/details-section";
 import { OverviewToolbar } from "@/app/dashboard/overview/_components/overview-toolbar";
 import { ReportInfoBar } from "@/app/dashboard/overview/_components/report-info-bar";
+import { SummarySection } from "@/app/dashboard/overview/_components/summary/summary-section";
 import { TrendsSection } from "@/app/dashboard/overview/_components/trends/trends-section";
 
 export default function OverviewPage() {
@@ -10,6 +11,7 @@ export default function OverviewPage() {
       <DashboardBreadcrumb />
       <OverviewToolbar />
       <ReportInfoBar />
+      <SummarySection />
       <TrendsSection />
       <DetailsSection />
     </main>
