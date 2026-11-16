@@ -59,3 +59,4 @@ Shared tooling lives at the repo root: `biome.json`, `tsconfig.base.json` and th
 
 - [02-folder-structure.md](02-folder-structure.md): where code lives.
 - [03-git-workflow.md](03-git-workflow.md): branches, commits and pull requests.
+- [04-ci-pipeline.md](04-ci-pipeline.md): the checks every pull request must pass.

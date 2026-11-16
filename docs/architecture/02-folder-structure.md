@@ -17,15 +17,21 @@ Items marked **(planned)** do not exist yet.
 │   │           └── migrations/   Generated SQL, committed
 │   └── web/                      Next.js frontend
 │       ├── public/               Static assets
-│       └── src/app/              App Router: layout, pages, global styles
+│       └── src/
+│           ├── app/              App Router: layout, pages, global styles
+│           ├── components/       React components
+│           └── lib/              api-client.ts: typed Eden client for the API
 ├── docs/
-│   ├── architecture/             This folder: overview, structure, git workflow
+│   ├── architecture/             This folder: overview, structure, git workflow, CI
 │   ├── adr/                      Architecture decision records
 │   ├── images/                   Diagrams and screenshots
 │   ├── roadmap/                  Plans
 │   └── security/                 Security notes
 ├── infra/
 │   └── nginx/                    Nginx config (planned)
+├── .github/
+│   ├── workflows/                ci.yml and security.yml (see 04-ci-pipeline.md)
+│   └── dependabot.yml            Weekly dependency update pull requests
 ├── .claude/skills/               Project skills for Claude Code
 ├── biome.json                    Shared lint and format config
 ├── tsconfig.base.json            Shared TypeScript options
@@ -36,7 +42,7 @@ Items marked **(planned)** do not exist yet.
 
 ## Rules
 
-- **Apps do not import from each other.** Code shared by api and web goes in a shared workspace package **(planned)**, for example `packages/contracts` with zod schemas.
+- **Apps do not import runtime code from each other.** The one exception is a type: web imports the `App` type from api so the Eden client is typed. Other shared code goes in a shared workspace package **(planned)**, for example `packages/contracts` with zod schemas.
 - **One root config.** Biome and the base tsconfig live at the root. Each app's `tsconfig.json` extends `tsconfig.base.json`.
 - **Scripts run from the root.** `bun run lint`, `bun run typecheck`, `bun run dev` and `bun run build` run for every app.
 - **Planned API layout.** Each feature gets a folder in `apps/api/src/<feature>/` with its routes, service and repository. Pure business calculations go in their own small module, not inside routes.

@@ -41,8 +41,9 @@ Short-lived branches off `main`, merged back through pull requests. No `develop`
    bun run typecheck
    bun test
    ```
-4. Merge with **squash merge**, so `main` has one commit per pull request and a readable history.
-5. Delete the branch after merging.
+4. Wait for CI. All checks in [04-ci-pipeline.md](04-ci-pipeline.md) must pass before the merge.
+5. Merge with **squash merge**, so `main` has one commit per pull request and a readable history.
+6. Delete the branch after merging. GitHub does this automatically.
 
 ## Database migrations
 
