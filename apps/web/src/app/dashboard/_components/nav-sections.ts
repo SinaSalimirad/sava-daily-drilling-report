@@ -43,13 +43,13 @@ export const sections: NavSection[] = [
   },
   {
     label: "Volumes & Pits",
-    href: "/volumes-&-pits",
+    href: "/volumes-and-pits",
     icon: CylinderIcon,
     items: ["Pit readings", "Volume accounting", "Losses"],
   },
   {
     label: "Inventory & Cost",
-    href: "/inventory-&-Cost",
+    href: "/inventory-and-cost",
     icon: BoxesIcon,
     items: ["Stock", "Products used", "Price list", "Cost"],
   },

@@ -8,15 +8,15 @@ import { Separator } from "@/components/ui/separator";
 
 export function DashboardHeader() {
   return (
-    <header className="flex items-center justify-between gap-4 px-10 py-4">
+    <header className="flex flex-wrap items-center justify-between gap-4 px-10 py-4">
       <Logo />
 
-      <div className="flex items-center gap-6">
+      <div className="flex flex-wrap items-center gap-x-6 gap-y-3">
         <ProjectSwitcher />
 
         <Separator
           orientation="vertical"
-          className="h-6 data-vertical:self-center"
+          className="h-6 data-vertical:self-center max-md:hidden"
         />
 
         <div className="relative">
@@ -25,13 +25,13 @@ export function DashboardHeader() {
             type="search"
             placeholder="Search..."
             aria-label="Search"
-            className="h-9 w-64 pl-9"
+            className="h-9 w-48 pl-9 sm:w-64"
           />
         </div>
 
         <Separator
           orientation="vertical"
-          className="h-6 data-vertical:self-center"
+          className="h-6 data-vertical:self-center max-md:hidden"
         />
 
         <Avatar>
