@@ -1,6 +1,5 @@
 import { app } from "./app";
+import { env } from "./config/env";
 
-const port = Number(process.env.PORT ?? 3001);
-
-app.listen(port);
-console.log(`API listening on http://localhost:${port}`);
+app.listen(env.API_PORT);
+console.log(`API listening on http://localhost:${env.API_PORT}`);
