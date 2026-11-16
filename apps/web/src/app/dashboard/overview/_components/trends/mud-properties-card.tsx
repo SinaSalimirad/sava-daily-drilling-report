@@ -1,4 +1,4 @@
-import { TrendCard } from "@/app/dashboard/overview/_components/trends/trend-card";
+import { OverviewCard } from "@/app/dashboard/overview/_components/overview-card";
 import { TrendSparkline } from "@/app/dashboard/overview/_components/trends/trend-sparkline";
 import {
   type MudProperty,
@@ -36,7 +36,7 @@ function MudPropertyRow({ property }: { property: MudProperty }) {
 
 export function MudPropertiesCard() {
   return (
-    <TrendCard
+    <OverviewCard
       title="Mud properties vs plan"
       subtitle="latest sample"
       version="v0.6"
@@ -44,6 +44,6 @@ export function MudPropertiesCard() {
       {mudProperties.map((property) => (
         <MudPropertyRow key={property.label} property={property} />
       ))}
-    </TrendCard>
+    </OverviewCard>
   );
 }

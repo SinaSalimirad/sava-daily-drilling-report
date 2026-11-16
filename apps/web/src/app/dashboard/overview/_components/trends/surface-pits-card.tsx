@@ -1,8 +1,8 @@
+import { OverviewCard } from "@/app/dashboard/overview/_components/overview-card";
 import {
   PIT_ROW_HEIGHT,
   PitBarsChart,
 } from "@/app/dashboard/overview/_components/trends/pit-bars-chart";
-import { TrendCard } from "@/app/dashboard/overview/_components/trends/trend-card";
 import {
   type PitKind,
   surfacePits,
@@ -30,7 +30,7 @@ const chartPits = pits.map(({ name, volume, kind }) => ({
 
 export function SurfacePitsCard() {
   return (
-    <TrendCard title="Surface pits" subtitle={`${pits.length} of 20`}>
+    <OverviewCard title="Surface pits" subtitle={`${pits.length} of 20`}>
       <div className="flex gap-4 text-sm">
         <div className="min-w-0 flex-1">
           <PitBarsChart pits={chartPits} capacity={capacity} />
@@ -61,6 +61,6 @@ export function SurfacePitsCard() {
           </li>
         ))}
       </ul>
-    </TrendCard>
+    </OverviewCard>
   );
 }

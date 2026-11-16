@@ -1,9 +1,9 @@
+import { OverviewCard } from "@/app/dashboard/overview/_components/overview-card";
 import { seriesBg } from "@/app/dashboard/overview/_components/trends/series";
 import {
   ShareBarChart,
   type SharePart,
 } from "@/app/dashboard/overview/_components/trends/share-bar-chart";
-import { TrendCard } from "@/app/dashboard/overview/_components/trends/trend-card";
 import { fluidCost } from "@/app/dashboard/overview/_components/trends/trends-data";
 
 const parts: (SharePart & { dot: string })[] = fluidCost.byProduct.map(
@@ -18,7 +18,7 @@ const parts: (SharePart & { dot: string })[] = fluidCost.byProduct.map(
 
 export function FluidCostCard() {
   return (
-    <TrendCard title="Fluid cost" subtitle="USD" version="v0.4">
+    <OverviewCard title="Fluid cost" subtitle="USD" version="v0.4">
       <dl className="grid grid-cols-2 gap-x-6 gap-y-4">
         {fluidCost.stats.map(({ label, value, note }) => (
           <div key={label}>
@@ -54,6 +54,6 @@ export function FluidCostCard() {
           ))}
         </ul>
       </div>
-    </TrendCard>
+    </OverviewCard>
   );
 }

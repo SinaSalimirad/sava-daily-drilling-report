@@ -1,5 +1,5 @@
+import { OverviewCard } from "@/app/dashboard/overview/_components/overview-card";
 import { StatusBadge } from "@/app/dashboard/overview/_components/status-badge";
-import { TrendCard } from "@/app/dashboard/overview/_components/trends/trend-card";
 import { productsUsed } from "@/app/dashboard/overview/_components/trends/trends-data";
 
 const headerClass =
@@ -7,7 +7,7 @@ const headerClass =
 
 export function ProductsUsedCard() {
   return (
-    <TrendCard
+    <OverviewCard
       title="Products used — last 24 h"
       meta={`All ${productsUsed.catalogueSize} products`}
       version="v0.4"
@@ -49,6 +49,6 @@ export function ProductsUsedCard() {
           ))}
         </tbody>
       </table>
-    </TrendCard>
+    </OverviewCard>
   );
 }
