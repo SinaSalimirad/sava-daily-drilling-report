@@ -1,6 +1,6 @@
 import Image from "next/image";
-import { ApiStatus } from "@/components/api-status";
-import { ToastDemo } from "@/components/toast-demo";
+import { ApiStatus } from "@/components/common/api-status";
+import { ToastDemo } from "@/components/common/toast-demo";
 
 export default function Home() {
   return (

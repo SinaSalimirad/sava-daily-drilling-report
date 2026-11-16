@@ -12,7 +12,7 @@ const nunito = localFont({
   style: "normal",
 });
 
-// Used only by the logo (components/logo.tsx), never for body text.
+// Used only by the logo (components/common/logo.tsx), never for body text.
 const pacifico = localFont({
   variable: "--font-pacifico",
   display: "swap",
