@@ -46,14 +46,11 @@ export function OverviewToolbar() {
       />
       <SelectPill options={units} value={unitsId} onChange={setUnitsId} />
 
-      <div className="ml-auto flex items-center gap-3">
-        <Button
-          variant="outline"
-          className="rounded-full border-0 bg-background"
-        >
+      <div className="ml-auto flex items-center gap-2">
+        <Button variant="outline" className="border-0 bg-background">
           Open report #{reportId}
         </Button>
-        <Button className="rounded-full">
+        <Button>
           <PlusIcon data-icon="inline-start" />
           New report
         </Button>
