@@ -35,7 +35,7 @@ export function MainNav() {
             {label}
             <ChevronDownIcon className="size-3.5 text-muted-foreground" />
           </DropdownMenuTrigger>
-          <DropdownMenuContent align="start">
+          <DropdownMenuContent align="start" className="w-max">
             {items.map((item) => (
               <DropdownMenuItem key={item}>{item}</DropdownMenuItem>
             ))}

@@ -55,7 +55,7 @@ export function SelectPill({
         <OptionLabel {...selected} />
         <ChevronDownIcon />
       </DropdownMenuTrigger>
-      <DropdownMenuContent align="start" className="max-h-60">
+      <DropdownMenuContent align="start" className="max-h-60 w-max">
         {options.map((option) => (
           <DropdownMenuItem
             key={option.id}
