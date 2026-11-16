@@ -57,6 +57,9 @@
       "includes": ["apps/web/src/components/ui/**"],
       "linter": {
         "rules": {
+          "correctness": {
+            "noComponentHookFactories": "off"
+          },
           "a11y": {
             "useFocusableInteractive": "off",
             "useSemanticElements": "off"
