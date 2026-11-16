@@ -29,7 +29,7 @@ export const sections: NavSection[] = [
     items: ["Overview", "Well summary", "Fleet"],
   },
   {
-    label: "Daily-Reports",
+    label: "Daily Reports",
     href: "/daily-reports",
     icon: MegaphoneIcon,
     items: ["Report list", "Report editor", "Activities", "Remarks"],
