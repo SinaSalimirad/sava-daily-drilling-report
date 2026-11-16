@@ -2,7 +2,10 @@
 
 import { cn } from "cn";
 import { ChevronDownIcon } from "lucide-react";
-import { sections, useCurrentSection } from "@/components/common/nav-sections";
+import {
+  sections,
+  useCurrentSection,
+} from "@/app/dashboard/_components/nav-sections";
 import { buttonVariants } from "@/components/ui/button";
 import {
   DropdownMenu,
@@ -17,11 +20,12 @@ export function MainNav() {
   return (
     <nav
       aria-label="Main"
-      className="flex flex-wrap items-center gap-3 border-b px-6 pb-2"
+      className="flex flex-wrap items-center gap-1 border-b px-10 pb-2"
     >
       {sections.map(({ label, icon: Icon, items }) => (
         <DropdownMenu key={label}>
           <DropdownMenuTrigger
+            openOnHover
             className={cn(
               buttonVariants({ variant: "ghost", className: "text-sm" }),
               label === current?.label && "bg-muted font-semibold",
