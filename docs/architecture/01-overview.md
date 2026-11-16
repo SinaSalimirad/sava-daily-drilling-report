@@ -19,12 +19,13 @@ Sava Daily Drilling Report is a web application for recording and reviewing dail
 
 ```mermaid
 flowchart LR
-  Browser --> Web["apps/web (Next.js, :3000)"]
-  Web -->|HTTP, JSON| Api["apps/api (Elysia, :3001)"]
+  Browser -->|loads the app| Web["apps/web (Next.js, :3000)"]
+  Browser -->|HTTP, JSON| Api["apps/api (Elysia, :3001)"]
   Api -->|Drizzle| Db[(PostgreSQL)]
 ```
 
-- The browser only talks to the web app. The web app calls the API.
+- The web app is client-only: Next.js serves the app, but all code that calls the API runs in the browser. There is no server-side rendering or data fetching in Next.js.
+- The browser calls the API directly, so the API allows the web origin through CORS (`WEB_ORIGIN`).
 - Only the API talks to the database. The web app never queries Postgres directly.
 - The database layer **(planned)** lives in `apps/api/src/db`. Drizzle config already points there.
 
@@ -47,11 +48,13 @@ Shared tooling lives at the repo root: `biome.json`, `tsconfig.base.json` and th
 
 ## Configuration
 
-| Variable       | Used by | Default       | Notes                                      |
-| -------------- | ------- | ------------- | ------------------------------------------ |
-| `NODE_ENV`     | api     | `development` | `development`, `production` or `test`      |
-| `API_PORT`     | api     | `3001`        | 1 to 65535                                 |
-| `DATABASE_URL` | api     | none          | Required. `postgres://` or `postgresql://` |
+| Variable              | Used by | Default                 | Notes                                      |
+| --------------------- | ------- | ----------------------- | ------------------------------------------ |
+| `NODE_ENV`            | api     | `development`           | `development`, `production` or `test`      |
+| `API_PORT`            | api     | `3001`                  | 1 to 65535                                 |
+| `DATABASE_URL`        | api     | none                    | Required. `postgres://` or `postgresql://` |
+| `WEB_ORIGIN`          | api     | `http://localhost:3000` | Browser origin allowed by CORS             |
+| `NEXT_PUBLIC_API_URL` | web     | `http://localhost:3001` | API base URL for the Eden client           |
 
 `.env` files are git-ignored. Only `.env.example` is tracked, one per app (`apps/api` and `apps/web`). Copy it to `.env` to start.
 

@@ -6,6 +6,8 @@ const envSchema = z.object({
     .default("development"),
   API_PORT: z.coerce.number().int().min(1).max(65535).default(3001),
   DATABASE_URL: z.url({ protocol: /^postgres(ql)?$/ }),
+  // The browser origin of the web app, allowed by CORS.
+  WEB_ORIGIN: z.url().default("http://localhost:3000"),
 });
 
 export type Env = z.infer<typeof envSchema>;
