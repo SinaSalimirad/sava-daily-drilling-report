@@ -1,0 +1,11 @@
+{
+  "name": "sava-daily-drilling-report",
+  "private": true,
+  "workspaces": ["apps/*"],
+  "scripts": {
+    "dev": "bun --filter '*' dev",
+    "dev:api": "bun --filter api dev",
+    "dev:web": "bun --filter web dev",
+    "test": "bun --filter api test"
+  }
+}

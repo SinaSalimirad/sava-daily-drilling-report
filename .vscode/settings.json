@@ -1,0 +1,6 @@
+{
+  "editor.fontFamily": "'FiraCode Nerd Font', 'Fira Code', monospace",
+  "editor.fontLigatures": true,
+  "editor.cursorSmoothCaretAnimation": "on",
+  "terminal.integrated.fontFamily": "'FiraCode Nerd Font Mono', 'Fira Code', monospace"
+}
