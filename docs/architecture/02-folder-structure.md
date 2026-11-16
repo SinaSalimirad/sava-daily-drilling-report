@@ -6,6 +6,7 @@ Items marked **(planned)** do not exist yet.
 .
 ├── apps/
 │   ├── api/                      Elysia API
+│   │   ├── Dockerfile            API image (build context is the repo root)
 │   │   ├── drizzle.config.ts     drizzle-kit config (reads DATABASE_URL via env)
 │   │   └── src/
 │   │       ├── index.ts          Starts the server
@@ -16,6 +17,7 @@ Items marked **(planned)** do not exist yet.
 │   │           ├── schema/       Drizzle table definitions, exported from index.ts
 │   │           └── migrations/   Generated SQL, committed
 │   └── web/                      Next.js frontend
+│       ├── Dockerfile            Web image (build context is the repo root)
 │       ├── public/               Static assets
 │       └── src/
 │           ├── app/              App Router: layout, pages, global styles
@@ -35,7 +37,8 @@ Items marked **(planned)** do not exist yet.
 ├── .claude/skills/               Project skills for Claude Code
 ├── biome.json                    Shared lint and format config
 ├── tsconfig.base.json            Shared TypeScript options
-├── docker-compose.yml            Local services (planned, empty)
+├── .dockerignore                 Files kept out of Docker build contexts
+├── docker-compose.yml            Local stack: PostgreSQL, API and web
 ├── docker-compose.prod.yml       Production services (planned, empty)
 └── claude.md                     Project rules for Claude Code
 ```
