@@ -1,6 +1,8 @@
 import { PlusIcon } from "lucide-react";
 
+import { CurrentPage } from "@/components/common/current-page";
 import { DashboardHeader } from "@/components/common/dashboard-header";
+import { DateRangeFilter } from "@/components/common/date-range-filter";
 import { MainNav } from "@/components/common/main-nav";
 import {
   Breadcrumb,
@@ -16,7 +18,7 @@ export default function DashboardPage() {
   return (
     <>
       <DashboardHeader />
-      <MainNav active="Dashboard" />
+      <MainNav />
 
       <main>
         <div className="flex items-center justify-between px-6 py-3">
@@ -36,6 +38,11 @@ export default function DashboardPage() {
             <PlusIcon data-icon="inline-start" />
             New report
           </Button>
+        </div>
+
+        <div className="flex flex-wrap items-center gap-4 px-6 py-3">
+          <CurrentPage />
+          <DateRangeFilter />
         </div>
       </main>
     </>

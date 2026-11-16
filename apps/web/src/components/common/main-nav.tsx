@@ -1,16 +1,8 @@
+"use client";
+
 import { cn } from "cn";
-import {
-  ChartNoAxesCombinedIcon,
-  ChevronDownIcon,
-  CreditCardIcon,
-  FlaskConicalIcon,
-  LayoutDashboardIcon,
-  LifeBuoyIcon,
-  type LucideIcon,
-  MegaphoneIcon,
-  SettingsIcon,
-  UsersIcon,
-} from "lucide-react";
+import { ChevronDownIcon } from "lucide-react";
+import { sections, useCurrentSection } from "@/components/common/nav-sections";
 import { buttonVariants } from "@/components/ui/button";
 import {
   DropdownMenu,
@@ -19,45 +11,9 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 
-type NavSection = {
-  label: string;
-  icon: LucideIcon;
-  items: string[];
-};
+export function MainNav() {
+  const current = useCurrentSection();
 
-// Placeholder items: replace them with real pages when the routes exist.
-const sections: NavSection[] = [
-  {
-    label: "Dashboard",
-    icon: LayoutDashboardIcon,
-    items: ["Overview", "Reports"],
-  },
-  {
-    label: "Visitor Analytics",
-    icon: ChartNoAxesCombinedIcon,
-    items: ["Traffic", "Sources"],
-  },
-  { label: "Leads", icon: UsersIcon, items: ["All leads", "Import"] },
-  { label: "Campaign", icon: MegaphoneIcon, items: ["Active", "Archived"] },
-  {
-    label: "A/B Testing Suite",
-    icon: FlaskConicalIcon,
-    items: ["Experiments", "Results"],
-  },
-  { label: "Payment", icon: CreditCardIcon, items: ["Invoices", "Billing"] },
-  {
-    label: "Settings & Integrations",
-    icon: SettingsIcon,
-    items: ["General", "Integrations"],
-  },
-  {
-    label: "Support",
-    icon: LifeBuoyIcon,
-    items: ["Help center", "Contact us"],
-  },
-];
-
-export function MainNav({ active }: { active?: string }) {
   return (
     <nav
       aria-label="Main"
@@ -68,7 +24,7 @@ export function MainNav({ active }: { active?: string }) {
           <DropdownMenuTrigger
             className={cn(
               buttonVariants({ variant: "ghost", className: "text-sm" }),
-              label === active && "bg-muted font-semibold",
+              label === current?.label && "bg-muted font-semibold",
             )}
           >
             <Icon />
