@@ -24,9 +24,10 @@ export function ReportInfoBar() {
   return (
     <section
       aria-label="Report information"
-      className="flex overflow-hidden rounded-2xl border bg-background shadow-xs"
+      className="flex flex-col overflow-hidden rounded-2xl border bg-background shadow-xs md:flex-row"
     >
-      {/* One row: on narrow screens the fields scroll sideways instead of wrapping. */}
+      {/* One row: on narrow screens the fields scroll sideways instead of wrapping,
+          and the badges move below them. */}
       <dl className="flex min-w-0 flex-1 overflow-x-auto">
         {report.fields.map(({ label, value }) => (
           <div key={label} className="shrink-0 border-r px-5 py-3">
@@ -38,7 +39,7 @@ export function ReportInfoBar() {
         ))}
       </dl>
 
-      <div className="flex shrink-0 items-center gap-2 px-5 py-3 text-xs font-medium">
+      <div className="flex shrink-0 items-center gap-2 border-t px-5 py-3 text-xs font-medium md:border-t-0">
         <StatusBadge tone="warning">
           {report.status} · rev {report.revision}
         </StatusBadge>
