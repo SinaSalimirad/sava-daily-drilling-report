@@ -17,9 +17,9 @@ export function OverviewCard({
   return (
     <section
       aria-label={title}
-      className="flex flex-col gap-5 rounded-2xl border bg-background p-5 shadow-xs"
+      className="flex min-w-0 flex-col gap-5 rounded-2xl border bg-background p-5 shadow-xs"
     >
-      <header className="flex items-baseline gap-3">
+      <header className="flex flex-wrap items-baseline gap-x-3 gap-y-1">
         <h2 className="text-sm font-semibold">{title}</h2>
         {subtitle && (
           <span className="text-xs text-muted-foreground">{subtitle}</span>

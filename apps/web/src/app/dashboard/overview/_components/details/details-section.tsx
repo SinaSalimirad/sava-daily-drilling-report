@@ -7,7 +7,7 @@ export function DetailsSection() {
     <div className="grid gap-4 lg:grid-cols-2">
       <HydraulicsCard />
       <SolidsAnalysisCard />
-      <div className="lg:col-span-2">
+      <div className="min-w-0 lg:col-span-2">
         <RecentReportsCard />
       </div>
     </div>
