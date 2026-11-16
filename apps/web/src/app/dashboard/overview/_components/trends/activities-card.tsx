@@ -1,9 +1,9 @@
+import { OverviewCard } from "@/app/dashboard/overview/_components/overview-card";
 import { seriesBg } from "@/app/dashboard/overview/_components/trends/series";
 import {
   ShareBarChart,
   type SharePart,
 } from "@/app/dashboard/overview/_components/trends/share-bar-chart";
-import { TrendCard } from "@/app/dashboard/overview/_components/trends/trend-card";
 import { activities } from "@/app/dashboard/overview/_components/trends/trends-data";
 
 const hours = (value: number) => `${value.toFixed(1)} h`;
@@ -17,7 +17,7 @@ const parts: SharePart[] = activities.parts.map((part) => ({
 
 export function ActivitiesCard() {
   return (
-    <TrendCard title="Activities — 24 h">
+    <OverviewCard title="Activities — 24 h">
       <ShareBarChart parts={parts} label="Activities in the last 24 hours" />
 
       <ul className="flex flex-col gap-2 text-sm">
@@ -43,6 +43,6 @@ export function ActivitiesCard() {
           {activities.total}
         </dd>
       </dl>
-    </TrendCard>
+    </OverviewCard>
   );
 }

@@ -1,7 +1,7 @@
 import { StatusBadge } from "@/app/dashboard/overview/_components/status-badge";
 
 // The frame every trend shares: a title, an optional subtitle, and the content.
-export function TrendCard({
+export function OverviewCard({
   title,
   subtitle,
   meta,

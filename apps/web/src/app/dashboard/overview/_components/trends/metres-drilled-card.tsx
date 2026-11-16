@@ -1,5 +1,5 @@
+import { OverviewCard } from "@/app/dashboard/overview/_components/overview-card";
 import { MetresBarChart } from "@/app/dashboard/overview/_components/trends/metres-bar-chart";
-import { TrendCard } from "@/app/dashboard/overview/_components/trends/trend-card";
 import { metresDrilled } from "@/app/dashboard/overview/_components/trends/trends-data";
 
 const { axisMax, ticks, average, reports } = metresDrilled;
@@ -9,7 +9,7 @@ const lastReport = reports[reports.length - 1]?.number;
 
 export function MetresDrilledCard() {
   return (
-    <TrendCard
+    <OverviewCard
       title="Metres drilled per report"
       subtitle={`reports #${firstReport}–#${lastReport}`}
     >
@@ -49,6 +49,6 @@ export function MetresDrilledCard() {
           ))}
         </tbody>
       </table>
-    </TrendCard>
+    </OverviewCard>
   );
 }
