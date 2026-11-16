@@ -1,8 +1,8 @@
 import { OverviewCard } from "@/app/dashboard/overview/_components/overview-card";
 import {
-  PIT_ROW_HEIGHT,
-  PitBarsChart,
-} from "@/app/dashboard/overview/_components/trends/pit-bars-chart";
+  ROW_HEIGHT,
+  RowBarsChart,
+} from "@/app/dashboard/overview/_components/row-bars-chart";
 import {
   type PitKind,
   surfacePits,
@@ -24,7 +24,8 @@ const { capacity, pits, totals } = surfacePits;
 
 const chartPits = pits.map(({ name, volume, kind }) => ({
   name,
-  volume,
+  value: volume,
+  display: String(volume),
   fill: kindFill[kind],
 }));
 
@@ -33,7 +34,11 @@ export function SurfacePitsCard() {
     <OverviewCard title="Surface pits" subtitle={`${pits.length} of 20`}>
       <div className="flex gap-4 text-sm">
         <div className="min-w-0 flex-1">
-          <PitBarsChart pits={chartPits} capacity={capacity} />
+          <RowBarsChart
+            rows={chartPits}
+            capacity={capacity}
+            ariaLabel="Volume in each surface pit"
+          />
         </div>
         {/* Same row height as the chart, so each value sits beside its bar. */}
         <ul>
@@ -41,7 +46,7 @@ export function SurfacePitsCard() {
             <li
               key={name}
               className="flex items-center justify-end font-semibold tabular-nums"
-              style={{ height: PIT_ROW_HEIGHT }}
+              style={{ height: ROW_HEIGHT }}
             >
               {volume}
             </li>

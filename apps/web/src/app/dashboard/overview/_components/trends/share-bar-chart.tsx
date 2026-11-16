@@ -21,9 +21,12 @@ export type SharePart = {
 export function ShareBarChart({
   parts,
   label,
+  height = 28,
 }: {
   parts: SharePart[];
   label: string;
+  // 28 for a tall bar, 8 for a thin one beside a figure.
+  height?: number;
 }) {
   const definition = useMemo(
     () =>
@@ -59,7 +62,7 @@ export function ShareBarChart({
   return (
     <Chart
       definition={definition}
-      height={28}
+      height={height}
       ariaLabel={label}
       ariaDescription={parts
         .map((part) => `${part.label} ${part.detail}`)
