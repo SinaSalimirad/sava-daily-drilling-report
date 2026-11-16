@@ -1,0 +1,25 @@
+import * as z from "zod";
+
+const envSchema = z.object({
+  NODE_ENV: z
+    .enum(["development", "production", "test"])
+    .default("development"),
+  API_PORT: z.coerce.number().int().min(1).max(65535).default(3001),
+  DATABASE_URL: z.url({ protocol: /^postgres(ql)?$/ }),
+});
+
+export type Env = z.infer<typeof envSchema>;
+
+function parseEnv(source: Record<string, string | undefined>): Env {
+  const result = envSchema.safeParse(source);
+
+  if (!result.success) {
+    // Fail at startup with a readable list instead of a raw zod stack trace.
+    const details = z.prettifyError(result.error);
+    throw new Error(`Invalid environment variables:\n${details}`);
+  }
+
+  return result.data;
+}
+
+export const env = parseEnv(process.env);
