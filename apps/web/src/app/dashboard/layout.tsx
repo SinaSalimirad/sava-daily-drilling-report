@@ -1,4 +1,6 @@
 import type { Metadata } from "next";
+import { DashboardHeader } from "@/app/dashboard/_components/dashboard-header";
+import { MainNav } from "@/app/dashboard/_components/main-nav";
 
 // Keep the dashboard out of search results. Do not also block it in robots.txt:
 // crawlers must be able to fetch the page to see this tag.
@@ -11,5 +13,11 @@ export default function DashboardLayout({
 }: {
   children: React.ReactNode;
 }) {
-  return children;
+  return (
+    <>
+      <DashboardHeader />
+      <MainNav />
+      {children}
+    </>
+  );
 }

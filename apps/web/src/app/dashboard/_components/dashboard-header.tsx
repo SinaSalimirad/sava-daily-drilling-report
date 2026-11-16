@@ -1,7 +1,6 @@
 import { BellIcon, MoonIcon, SearchIcon } from "lucide-react";
-
+import { ProjectSwitcher } from "@/app/dashboard/_components/project-switcher";
 import { Logo } from "@/components/common/logo";
-import { ProjectSwitcher } from "@/components/common/project-switcher";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -9,7 +8,7 @@ import { Separator } from "@/components/ui/separator";
 
 export function DashboardHeader() {
   return (
-    <header className="flex items-center justify-between gap-4 px-6 py-4 mb-4">
+    <header className="flex items-center justify-between gap-4 px-10 py-4">
       <Logo />
 
       <div className="flex items-center gap-6">
@@ -26,7 +25,7 @@ export function DashboardHeader() {
             type="search"
             placeholder="Search..."
             aria-label="Search"
-            className="h-9 w-64 rounded-xl pl-9"
+            className="h-9 w-64 pl-9"
           />
         </div>
 
@@ -34,6 +33,10 @@ export function DashboardHeader() {
           orientation="vertical"
           className="h-6 data-vertical:self-center"
         />
+
+        <Avatar>
+          <AvatarFallback>SS</AvatarFallback>
+        </Avatar>
 
         <div className="flex items-center gap-1">
           <Button variant="ghost" size="icon" aria-label="Notifications">
@@ -43,10 +46,6 @@ export function DashboardHeader() {
             <MoonIcon />
           </Button>
         </div>
-
-        <Avatar>
-          <AvatarFallback>SS</AvatarFallback>
-        </Avatar>
       </div>
     </header>
   );
