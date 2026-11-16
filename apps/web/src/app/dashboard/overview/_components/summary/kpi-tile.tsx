@@ -21,7 +21,7 @@ export function KpiTile({
   footer: React.ReactNode;
 }) {
   return (
-    <article className="flex flex-col gap-3 rounded-2xl border bg-background p-5 shadow-xs">
+    <article className="flex flex-col gap-3 rounded-2xl border bg-card p-5 shadow-xs">
       <header className="flex items-center gap-2">
         <h3 className="text-xs tracking-widest text-muted-foreground uppercase">
           {label}

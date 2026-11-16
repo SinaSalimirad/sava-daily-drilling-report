@@ -15,8 +15,10 @@ export default function DashboardLayout({
 }) {
   return (
     <>
-      <DashboardHeader />
-      <MainNav />
+      <div className="bg-card">
+        <DashboardHeader />
+        <MainNav />
+      </div>
       {children}
     </>
   );

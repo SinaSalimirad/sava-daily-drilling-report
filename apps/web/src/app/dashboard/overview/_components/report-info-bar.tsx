@@ -24,7 +24,7 @@ export function ReportInfoBar() {
   return (
     <section
       aria-label="Report information"
-      className="flex flex-col overflow-hidden rounded-2xl border bg-background shadow-xs md:flex-row"
+      className="flex flex-col overflow-hidden rounded-2xl border bg-card shadow-xs md:flex-row"
     >
       {/* One row: on narrow screens the fields scroll sideways instead of wrapping,
           and the badges move below them. */}

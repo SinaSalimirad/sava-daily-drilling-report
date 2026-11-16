@@ -27,7 +27,7 @@ export function StatusBadge({
       )}
     >
       {tone === "warning" && (
-        <span className="size-2 rounded-full bg-amber-500" aria-hidden />
+        <span className="size-2 rounded-full bg-status-warning" aria-hidden />
       )}
       {children}
     </span>
