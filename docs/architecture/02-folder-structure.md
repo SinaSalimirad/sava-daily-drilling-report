@@ -21,7 +21,9 @@ Items marked **(planned)** do not exist yet.
 │       ├── public/               Static assets
 │       └── src/
 │           ├── app/              App Router: layout, pages, global styles
-│           ├── components/       React components
+│           ├── components/
+│           │   ├── ui/           shadcn and Animate UI primitives (button, toast)
+│           │   └── common/       App components shared across pages (logo, header, nav)
 │           └── lib/              api-client.ts: typed Eden client for the API
 ├── docs/
 │   ├── architecture/             This folder: overview, structure, git workflow, CI
