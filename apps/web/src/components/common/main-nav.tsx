@@ -67,7 +67,7 @@ export function MainNav({ active }: { active?: string }) {
         <DropdownMenu key={label}>
           <DropdownMenuTrigger
             className={cn(
-              buttonVariants({ variant: "ghost" }),
+              buttonVariants({ variant: "ghost", className: "text-sm" }),
               label === active && "bg-muted font-semibold",
             )}
           >
