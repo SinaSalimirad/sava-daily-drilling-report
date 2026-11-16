@@ -1,3 +1,5 @@
+import { StatusBadge } from "@/app/dashboard/overview/_components/status-badge";
+
 // Placeholder report: replace it with data from the API.
 // Related fields are next to each other: well, field/rig, operator/contractor, reps.
 const report = {
@@ -37,13 +39,10 @@ export function ReportInfoBar() {
       </dl>
 
       <div className="flex shrink-0 items-center gap-2 px-5 py-3 text-xs font-medium">
-        <span className="flex items-center gap-1.5 rounded-full border border-amber-300 bg-amber-50 px-2.5 py-1 text-amber-900 dark:border-amber-700 dark:bg-amber-950 dark:text-amber-100">
-          <span className="size-2 rounded-full bg-amber-500" aria-hidden />
+        <StatusBadge tone="warning">
           {report.status} · rev {report.revision}
-        </span>
-        <span className="rounded-full border bg-muted px-2.5 py-1 text-muted-foreground">
-          edited {report.editedAt}
-        </span>
+        </StatusBadge>
+        <StatusBadge>edited {report.editedAt}</StatusBadge>
       </div>
     </section>
   );
