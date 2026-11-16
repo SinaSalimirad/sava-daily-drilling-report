@@ -9,6 +9,7 @@ Sava Daily Drilling Report is a web application for recording and reviewing dail
 | Runtime        | Bun                                         |
 | API            | Elysia                                      |
 | Web            | Next.js 16, React 19, Tailwind CSS 4        |
+| Charts         | TanStack Charts (`@tanstack/charts`)        |
 | Database       | PostgreSQL with Drizzle ORM and drizzle-kit |
 | Validation     | zod                                         |
 | Lint / format  | Biome (one shared config at the repo root)  |
