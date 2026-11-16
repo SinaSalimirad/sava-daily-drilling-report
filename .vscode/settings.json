@@ -1,5 +1,6 @@
 {
   "editor.fontFamily": "'FiraCode Nerd Font', 'Fira Code', monospace",
+  "editor.fontSize": 15,
   "editor.fontLigatures": true,
   "editor.cursorSmoothCaretAnimation": "on",
   "files.autoSave": "afterDelay",

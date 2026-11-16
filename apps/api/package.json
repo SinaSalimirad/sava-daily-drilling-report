@@ -9,9 +9,12 @@
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
-    "elysia": "^1.4.32"
+    "drizzle-orm": "^0.45.4",
+    "elysia": "^1.4.32",
+    "zod": "^4.6.7"
   },
   "devDependencies": {
-    "@types/bun": "^1.4.4"
+    "@types/bun": "^1.4.4",
+    "drizzle-kit": "^0.31.11"
   }
 }
