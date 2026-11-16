@@ -53,7 +53,7 @@ Shared tooling lives at the repo root: `biome.json`, `tsconfig.base.json` and th
 | `API_PORT`     | api     | `3001`        | 1 to 65535                                 |
 | `DATABASE_URL` | api     | none          | Required. `postgres://` or `postgresql://` |
 
-`.env` files are git-ignored. Only `.env.example` is tracked **(planned)**.
+`.env` files are git-ignored. Only `.env.example` is tracked, one per app (`apps/api` and `apps/web`). Copy it to `.env` to start.
 
 ## Related documents
 
