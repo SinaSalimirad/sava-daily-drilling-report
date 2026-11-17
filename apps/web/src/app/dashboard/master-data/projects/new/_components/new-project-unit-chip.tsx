@@ -22,7 +22,7 @@ export function NewProjectUnitChip({
 }) {
   if (!options || options.length < 2) {
     return (
-      <span className="flex gap-1.5 rounded-md bg-muted/40 px-2.5 py-1 text-xs">
+      <span className="flex gap-1.5 rounded-md bg-muted/50 px-2.5 py-1 text-xs">
         <em className="text-muted-foreground not-italic">{quantity}</em>
         <b className="font-medium">{unit}</b>
       </span>
@@ -31,7 +31,7 @@ export function NewProjectUnitChip({
 
   return (
     <DropdownMenu>
-      <DropdownMenuTrigger className="flex items-center gap-1.5 rounded-md px-2.5 py-1 text-xs bg-muted/40">
+      <DropdownMenuTrigger className="flex items-center gap-1.5 rounded-md bg-muted/50 px-2.5 py-1 text-xs">
         <em className="text-muted-foreground not-italic">{quantity}</em>
         <b className="font-medium">{unit}</b>
         <ChevronDownIcon className="size-3 text-muted-foreground" />
