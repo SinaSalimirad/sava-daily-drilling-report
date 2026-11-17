@@ -3,12 +3,12 @@ import localFont from "next/font/local";
 import "./globals.css";
 import { Toaster } from "@/components/ui/toast";
 
-// Self-hosted variable font: one file covers every weight from 100 to 900. No italic on purpose.
-const inter = localFont({
-  variable: "--font-inter",
+// Self-hosted variable font: one file covers every weight from 200 to 1000. No italic on purpose.
+const nunito = localFont({
+  variable: "--font-nunito",
   display: "swap",
-  src: "./fonts/Inter-Variable.ttf",
-  weight: "100 900",
+  src: "./fonts/Nunito-Variable.woff2",
+  weight: "200 1000",
   style: "normal",
 });
 
@@ -29,7 +29,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
       lang="en"
-      className={`${inter.variable} ${pacifico.variable} h-full antialiased`}
+      className={`${nunito.variable} ${pacifico.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">
         <Toaster>{children}</Toaster>
