@@ -43,12 +43,12 @@ Shared tooling lives at the repo root: `biome.json`, `tsconfig.base.json` and th
 
 All pages live under `/dashboard` and share one header and main nav (`dashboard/layout.tsx`). A section's pages are `/dashboard/<section>/<page>`, except the Dashboard section itself, whose pages are `/dashboard/<page>`.
 
-| URL                               | Page     | Data                    |
-| --------------------------------- | -------- | ----------------------- |
+| URL                               | Page     | Data                     |
+| --------------------------------- | -------- | ------------------------ |
 | `/dashboard`                      | Redirect | to `/dashboard/overview` |
-| `/dashboard/overview`             | Overview | Placeholder             |
-| `/dashboard/master-data`          | Redirect | to the Projects page    |
-| `/dashboard/master-data/projects` | Projects | Placeholder             |
+| `/dashboard/overview`             | Overview | Placeholder              |
+| `/dashboard/master-data`          | Redirect | to the Projects page     |
+| `/dashboard/master-data/projects` | Projects | Placeholder              |
 
 The other nav entries are placeholders without a page yet, and the nav items are not links yet. The pages show placeholder data kept in one `*-data.ts` file per section until the API has the matching endpoints. See [02-folder-structure.md](02-folder-structure.md) for the routing rules.
 

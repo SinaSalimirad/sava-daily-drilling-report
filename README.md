@@ -20,15 +20,15 @@ The dashboard is at <http://localhost:3000/dashboard>.
 
 ## Commands
 
-| Command                             | What it does                                   |
-| ----------------------------------- | ---------------------------------------------- |
-| `bun run dev`                       | Starts the API and the web app                 |
-| `bun run lint` / `bun run format`   | Checks / fixes lint and formatting with Biome  |
-| `bun run typecheck`                 | Type-checks every app                          |
-| `bun test`                          | Runs the tests                                 |
-| `bun run build`                     | Builds every app                               |
-| `bun run db:generate` (in `apps/api`) | Generates a SQL migration from the schema    |
-| `bun run db:migrate` (in `apps/api`)  | Applies the committed migrations             |
+| Command                               | What it does                                  |
+| ------------------------------------- | --------------------------------------------- |
+| `bun run dev`                         | Starts the API and the web app                |
+| `bun run lint` / `bun run format`     | Checks / fixes lint and formatting with Biome |
+| `bun run typecheck`                   | Type-checks every app                         |
+| `bun test`                            | Runs the tests                                |
+| `bun run build`                       | Builds every app                              |
+| `bun run db:generate` (in `apps/api`) | Generates a SQL migration from the schema     |
+| `bun run db:migrate` (in `apps/api`)  | Applies the committed migrations              |
 
 ## Documentation
 
