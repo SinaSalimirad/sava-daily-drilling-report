@@ -10,6 +10,11 @@ import { ProjectRecordCard } from "@/app/dashboard/master-data/projects/[project
 import { ProjectRigEquipmentCard } from "@/app/dashboard/master-data/projects/[projectId]/_components/project-rig-equipment-card";
 import { ProjectWellsCard } from "@/app/dashboard/master-data/projects/[projectId]/_components/project-wells-card";
 
+// This route's content depends entirely on the `projectId` param, so it cannot be
+// prerendered at build time; render it on request instead of requiring a Suspense
+// boundary around that one value. See https://nextjs.org/docs/messages/blocking-prerender-dynamic
+export const instant = false;
+
 // Master Data / Projects / <project name>. The breadcrumb takes "Master Data / Projects"
 // from the URL and the leaf from the project itself, the same way the Archive page does.
 export default async function ProjectDetailPage({
