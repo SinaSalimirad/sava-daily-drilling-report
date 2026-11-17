@@ -1,5 +1,5 @@
 import { hydraulics } from "@/app/dashboard/overview/_components/details/details-data";
-import { OverviewCard } from "@/app/dashboard/overview/_components/overview-card";
+import { OverviewCard } from "@/components/common/overview-card";
 import { StatGrid } from "@/app/dashboard/overview/_components/stat-grid";
 import { ShareBarChart } from "@/app/dashboard/overview/_components/trends/share-bar-chart";
 import { ShareLegend } from "@/app/dashboard/overview/_components/trends/share-legend";

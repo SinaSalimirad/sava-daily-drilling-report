@@ -1,4 +1,4 @@
-import { StatusBadge } from "@/app/dashboard/overview/_components/status-badge";
+import { StatusBadge } from "@/components/common/status-badge";
 
 // One headline figure: label (with version), big value, optional visual, footer.
 export function KpiTile({

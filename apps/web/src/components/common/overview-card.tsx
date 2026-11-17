@@ -1,4 +1,4 @@
-import { StatusBadge } from "@/app/dashboard/overview/_components/status-badge";
+import { StatusBadge } from "@/components/common/status-badge";
 
 // The frame every trend shares: a title, an optional subtitle, and the content.
 export function OverviewCard({

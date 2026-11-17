@@ -1,4 +1,4 @@
-import { StatusBadge } from "@/app/dashboard/overview/_components/status-badge";
+import { StatusBadge } from "@/components/common/status-badge";
 
 // Placeholder report: replace it with data from the API.
 // Related fields are next to each other: well, field/rig, operator/contractor, reps.
