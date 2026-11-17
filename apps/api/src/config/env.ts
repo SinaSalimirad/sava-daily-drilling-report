@@ -6,6 +6,8 @@ const envSchema = z.object({
     .default("development"),
   API_PORT: z.coerce.number().int().min(1).max(65535).default(3001),
   DATABASE_URL: z.url({ protocol: /^postgres(ql)?$/ }),
+  // Maximum connections in the pool. Keep it below the Postgres `max_connections` limit.
+  DB_POOL_MAX: z.coerce.number().int().min(1).max(100).default(10),
   // The browser origin of the web app, allowed by CORS.
   WEB_ORIGIN: z.url().default("http://localhost:3000"),
 });
