@@ -1,6 +1,7 @@
 "use client";
 
 import {
+  getItemHref,
   useCurrentPageName,
   useCurrentSection,
 } from "@/app/dashboard/_components/nav-sections";
@@ -14,7 +15,8 @@ import {
 } from "@/components/ui/breadcrumb";
 
 // Section / page for the current URL, e.g. /dashboard/overview -> Dashboard / Overview.
-export function DashboardBreadcrumb() {
+// A page below a sub page (Master Data / Projects / Archive) passes its own name as `leaf`.
+export function DashboardBreadcrumb({ leaf }: { leaf?: string }) {
   const section = useCurrentSection();
   const pageName = useCurrentPageName();
 
@@ -38,9 +40,23 @@ export function DashboardBreadcrumb() {
               </BreadcrumbLink>
             </BreadcrumbItem>
             <BreadcrumbSeparator />
-            <BreadcrumbItem>
-              <BreadcrumbPage>{pageName}</BreadcrumbPage>
-            </BreadcrumbItem>
+            {leaf ? (
+              <>
+                <BreadcrumbItem>
+                  <BreadcrumbLink href={getItemHref(section, pageName)}>
+                    {pageName}
+                  </BreadcrumbLink>
+                </BreadcrumbItem>
+                <BreadcrumbSeparator />
+                <BreadcrumbItem>
+                  <BreadcrumbPage>{leaf}</BreadcrumbPage>
+                </BreadcrumbItem>
+              </>
+            ) : (
+              <BreadcrumbItem>
+                <BreadcrumbPage>{pageName}</BreadcrumbPage>
+              </BreadcrumbItem>
+            )}
           </>
         )}
       </BreadcrumbList>
