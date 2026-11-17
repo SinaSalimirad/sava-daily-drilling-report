@@ -1,8 +1,8 @@
 import { hydraulics } from "@/app/dashboard/overview/_components/details/details-data";
-import { OverviewCard } from "@/components/common/overview-card";
 import { StatGrid } from "@/app/dashboard/overview/_components/stat-grid";
 import { ShareBarChart } from "@/app/dashboard/overview/_components/trends/share-bar-chart";
 import { ShareLegend } from "@/app/dashboard/overview/_components/trends/share-legend";
+import { OverviewCard } from "@/components/common/overview-card";
 
 const parts = hydraulics.losses.map(({ label, psi, series }) => ({
   label,

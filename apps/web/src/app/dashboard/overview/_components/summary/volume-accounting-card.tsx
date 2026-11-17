@@ -1,11 +1,11 @@
 import { CheckIcon } from "lucide-react";
-import { OverviewCard } from "@/components/common/overview-card";
 import {
   ROW_HEIGHT,
   type RowBar,
   RowBarsChart,
 } from "@/app/dashboard/overview/_components/row-bars-chart";
 import { volumeAccounting } from "@/app/dashboard/overview/_components/summary/summary-data";
+import { OverviewCard } from "@/components/common/overview-card";
 
 // Bars on the left, printed values on the right, in rows of the same height.
 function RowBars({

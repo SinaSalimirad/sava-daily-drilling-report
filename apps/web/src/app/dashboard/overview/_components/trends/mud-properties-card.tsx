@@ -1,9 +1,9 @@
-import { OverviewCard } from "@/components/common/overview-card";
 import { TrendSparkline } from "@/app/dashboard/overview/_components/trends/trend-sparkline";
 import {
   type MudProperty,
   mudProperties,
 } from "@/app/dashboard/overview/_components/trends/trends-data";
+import { OverviewCard } from "@/components/common/overview-card";
 
 const deltaColor = { good: "text-viz-good", bad: "text-viz-bad" };
 
