@@ -39,6 +39,25 @@ One repository with Bun workspaces (`apps/*`). Two apps today:
 
 Shared tooling lives at the repo root: `biome.json`, `tsconfig.base.json` and the root `package.json` scripts (`dev`, `lint`, `format`, `typecheck`, `build`). See [02-folder-structure.md](02-folder-structure.md).
 
+## Web app
+
+All pages live under `/dashboard` and share one header and main nav (`dashboard/layout.tsx`). A section's pages are `/dashboard/<section>/<page>`, except the Dashboard section itself, whose pages are `/dashboard/<page>`.
+
+| URL                               | Page     | Data                    |
+| --------------------------------- | -------- | ----------------------- |
+| `/dashboard`                      | Redirect | to `/dashboard/overview` |
+| `/dashboard/overview`             | Overview | Placeholder             |
+| `/dashboard/master-data`          | Redirect | to the Projects page    |
+| `/dashboard/master-data/projects` | Projects | Placeholder             |
+
+The other nav entries are placeholders without a page yet, and the nav items are not links yet. The pages show placeholder data kept in one `*-data.ts` file per section until the API has the matching endpoints. See [02-folder-structure.md](02-folder-structure.md) for the routing rules.
+
+## Database
+
+- The API connects through a `pg` pool, created in `apps/api/src/db/index.ts`. The pool logs idle-connection errors instead of crashing, and `closeDb()` closes it on shutdown.
+- Schema changes follow `generate` then `migrate`, never `push`: edit the schema, run `bun run db:generate` in `apps/api`, review and commit the SQL in `src/db/migrations`, then `bun run db:migrate` applies it. See the migration rules in [03-git-workflow.md](03-git-workflow.md).
+- There are no tables yet, so the first `db:generate` creates the `migrations` folder. `db:migrate` fails until then.
+
 ## API design
 
 - `app.ts` builds the Elysia app and `index.ts` starts the server. They are separate so tests can call the app without opening a port.
@@ -54,6 +73,7 @@ Shared tooling lives at the repo root: `biome.json`, `tsconfig.base.json` and th
 | `NODE_ENV`            | api     | `development`           | `development`, `production` or `test`      |
 | `API_PORT`            | api     | `3001`                  | 1 to 65535                                 |
 | `DATABASE_URL`        | api     | none                    | Required. `postgres://` or `postgresql://` |
+| `DB_POOL_MAX`         | api     | `10`                    | Connections in the pool, 1 to 100          |
 | `WEB_ORIGIN`          | api     | `http://localhost:3000` | Browser origin allowed by CORS             |
 | `NEXT_PUBLIC_API_URL` | web     | `http://localhost:3001` | API base URL for the Eden client           |
 
