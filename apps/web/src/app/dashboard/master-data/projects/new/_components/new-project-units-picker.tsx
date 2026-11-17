@@ -1,7 +1,10 @@
+import { useState } from "react";
 import {
+  UNIT_OPTIONS,
   UNIT_PRESETS,
   type UnitsPreset,
 } from "@/app/dashboard/master-data/projects/new/_components/new-project-types";
+import { NewProjectUnitChip } from "@/app/dashboard/master-data/projects/new/_components/new-project-unit-chip";
 
 export function NewProjectUnitsPicker({
   value,
@@ -11,13 +14,23 @@ export function NewProjectUnitsPicker({
   onChange: (value: UnitsPreset) => void;
 }) {
   const preset = UNIT_PRESETS[value];
+  // Only Custom's chips are editable, and only for the session: this preview
+  // has no form field of its own yet, so a switch here does not survive a
+  // preset change or a page reload.
+  const [customUnits, setCustomUnits] = useState<Record<string, string>>(() =>
+    Object.fromEntries(UNIT_PRESETS.custom.chips),
+  );
+
+  function setCustomUnit(quantity: string, unit: string) {
+    setCustomUnits((current) => ({ ...current, [quantity]: unit }));
+  }
 
   return (
     <div className="flex flex-col gap-4">
       <div
         role="radiogroup"
         aria-label="Unit preset"
-        className="grid grid-cols-1 gap-3 sm:grid-cols-2"
+        className="grid grid-cols-1 gap-3 sm:grid-cols-3"
       >
         {Object.entries(UNIT_PRESETS).map(([key, option]) => (
           <label
@@ -47,20 +60,25 @@ export function NewProjectUnitsPicker({
       </div>
 
       <div className="flex flex-wrap gap-1.5">
-        {preset.chips.map(([quantity, unit]) => (
-          <span
+        {preset.chips.map(([quantity, presetUnit]) => (
+          <NewProjectUnitChip
             key={quantity}
-            className="flex gap-1.5 rounded-md bg-muted px-2.5 py-1 text-xs"
-          >
-            <em className="text-muted-foreground not-italic">{quantity}</em>
-            <b className="font-medium">{unit}</b>
-          </span>
+            quantity={quantity}
+            unit={
+              value === "custom"
+                ? (customUnits[quantity] ?? presetUnit)
+                : presetUnit
+            }
+            options={value === "custom" ? UNIT_OPTIONS[quantity] : undefined}
+            onChange={(unit) => setCustomUnit(quantity, unit)}
+          />
         ))}
       </div>
 
       <p className="text-xs text-muted-foreground">
-        Each quantity can be changed one by one on the project&apos;s settings
-        after it is created.
+        {value === "custom"
+          ? "Click a unit to switch it."
+          : "Each quantity can be changed one by one on the project's settings after it is created."}
       </p>
     </div>
   );

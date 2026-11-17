@@ -25,7 +25,7 @@ export function NewProjectRigTypeToggle({
             className={
               value === option.value
                 ? "flex-1 bg-foreground font-medium text-background"
-                : "flex-1 text-muted-foreground hover:bg-muted"
+                : "flex-1 text-muted-foreground hover:bg-muted/50"
             }
           >
             {option.label}
