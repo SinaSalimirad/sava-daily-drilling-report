@@ -1,11 +1,11 @@
 "use client";
 
 import {
+  BookTextIcon,
   BoxesIcon,
   ChartNoAxesCombinedIcon,
   ClipboardListIcon,
   CylinderIcon,
-  DatabaseIcon,
   DropletsIcon,
   FlaskConicalIcon,
   LayoutDashboardIcon,
@@ -74,9 +74,9 @@ export const sections: NavSection[] = [
   {
     label: "Master Data",
     href: "/master-data",
-    icon: DatabaseIcon,
+    icon: BookTextIcon,
     items: [
-      "Project",
+      "Projects",
       "Wells",
       "Sections",
       "Pits",
