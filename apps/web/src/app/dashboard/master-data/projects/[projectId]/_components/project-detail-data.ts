@@ -4,7 +4,7 @@
 // a matching detail record.
 
 import type { ProjectStatus } from "@/app/dashboard/master-data/projects/_components/projects-data";
-import { UNIT_PRESETS } from "@/app/dashboard/master-data/projects/new/_components/new-project-types";
+import { UNIT_PRESETS } from "@/app/dashboard/master-data/projects/new/_components/new-project-data";
 
 export type RigType = "onshore" | "offshore";
 export type ReportSubmissionState = "submitted" | "draft";
