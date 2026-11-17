@@ -24,8 +24,8 @@ export function NewProjectRigTypeToggle({
             onClick={() => onChange(option.value)}
             className={
               value === option.value
-                ? "flex-1 bg-foreground font-medium text-background"
-                : "flex-1 text-muted-foreground hover:bg-muted/50"
+                ? "flex flex-1 items-center justify-center bg-foreground font-medium text-background"
+                : "flex flex-1 items-center justify-center text-muted-foreground hover:bg-muted/50"
             }
           >
             {option.label}
