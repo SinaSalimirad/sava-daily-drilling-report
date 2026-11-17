@@ -1,5 +1,5 @@
 import { CheckIcon } from "lucide-react";
-import { OverviewCard } from "@/app/dashboard/overview/_components/overview-card";
+import { OverviewCard } from "@/components/common/overview-card";
 import {
   ROW_HEIGHT,
   type RowBar,
