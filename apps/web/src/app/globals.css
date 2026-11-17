@@ -144,6 +144,12 @@
   html {
     @apply font-sans;
   }
+  /* Tailwind resets buttons to the default cursor: show the pointer on every
+     button that can be clicked, and leave the disabled ones alone. */
+  button:not(:disabled, [aria-disabled="true"], [data-disabled]),
+  [role="button"]:not([aria-disabled="true"], [data-disabled]) {
+    cursor: pointer;
+  }
 }
 
 /* Chart colors. The categorical order is fixed and never cycled: a series keeps
