@@ -13,8 +13,20 @@ export function NewProjectRigTypeToggle({
   onChange: (value: RigType) => void;
 }) {
   return (
-    <fieldset className="m-0 flex flex-col gap-1.5 border-0 p-0 text-sm">
-      <legend className="p-0 font-medium">Rig type</legend>
+    // A <fieldset>/<legend> is the "correct" semantic element for a group of
+    // buttons, but its box model is not resettable the way a <div>/<label>'s
+    // is: it sat a few pixels off the other fields in this row no matter what
+    // margin/padding was zeroed. role="group" gives assistive tech the same
+    // grouping without that layout quirk.
+    // biome-ignore lint/a11y/useSemanticElements: see comment above.
+    <div
+      role="group"
+      aria-labelledby="rig-type-label"
+      className="flex flex-col gap-1.5 text-sm"
+    >
+      <span id="rig-type-label" className="font-medium">
+        Rig type
+      </span>
       <div className="flex h-9 overflow-hidden rounded-md border">
         {options.map((option) => (
           <button
@@ -37,6 +49,6 @@ export function NewProjectRigTypeToggle({
           ? "Every well will ask for water depth"
           : "Wells will not ask for water depth"}
       </span>
-    </fieldset>
+    </div>
   );
 }
