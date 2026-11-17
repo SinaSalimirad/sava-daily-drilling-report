@@ -17,3 +17,7 @@ export const projectCreateSchema = z.object({
   status: projectStatusSchema,
   currency: projectCurrencySchema,
 });
+export type ProjectCreate = z.infer<typeof projectCreateSchema>;
+
+export const projectUpdateSchema = projectCreateSchema.partial();
+export type ProjectUpdate = z.infer<typeof projectUpdateSchema>;
