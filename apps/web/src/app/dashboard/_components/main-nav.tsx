@@ -21,14 +21,23 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 
+// Flat bottom, rounded top: a tab sitting on the nav's border-b. No border on
+// the other three sides — only the bottom one is ever meaningful. Every tab
+// keeps a resting background (instead of ghost's plain transparent) so the
+// row reads as a set of tabs, not bare text; hover and current go one step
+// further via ghost's own hover:bg-muted / the current tab's bg-muted below.
+// `openOnHover` sets aria-expanded as soon as it's hovered, so ghost's
+// aria-expanded:bg-muted (full strength) fires at the same time as the
+// hover below — both need the same /50 override or the aria-expanded one wins.
 const triggerClass = cn(
   buttonVariants({ variant: "ghost", className: "text-sm" }),
-  "shrink-0",
+  "shrink-0 rounded-t-md rounded-b-none border-0 border-transparent px-3 py-5 hover:bg-muted/50 aria-expanded:bg-muted/50",
 );
 
-// The line sits on the nav's bottom border (pb-2 = 8px, plus 2px lower).
+// The current section's tab: a short blue line, absolutely placed on the
+// nav's own border-b, so it reads as a colored segment of that same line.
 const currentTriggerClass =
-  "relative bg-muted font-semibold after:absolute after:inset-x-2 after:-bottom-2.5 after:h-0.5 after:rounded-full after:bg-series-1";
+  "relative bg-muted/50 after:absolute after:inset-x-0 after:bottom-0 after:h-0.5 after:bg-series-1";
 
 // The active section inside the "More" menu: a bold label with a line on its left.
 const currentSubTriggerClass =
@@ -160,7 +169,7 @@ export function MainNav() {
   const hiddenSections = sections.slice(visibleCount);
 
   return (
-    <nav aria-label="Main" className="relative border-b px-10 pb-2">
+    <nav aria-label="Main" className="relative border-b px-10">
       <div ref={containerRef} className="flex items-center gap-1">
         {visibleSections.map((section) => (
           <SectionMenu
