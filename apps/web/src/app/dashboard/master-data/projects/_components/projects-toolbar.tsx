@@ -23,7 +23,10 @@ export function ProjectsToolbar() {
             {archivedProjects.length}
           </span>
         </Button>
-        <Button>
+        <Button
+          nativeButton={false}
+          render={<Link href="/dashboard/master-data/projects/new" />}
+        >
           <PlusIcon data-icon="inline-start" />
           New project
         </Button>
