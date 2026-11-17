@@ -30,7 +30,7 @@ const statusLabels: Record<ProjectStatus, string> = {
 };
 
 function ProjectStatusBadge({ status }: { status: ProjectStatus }) {
-  const tone = status === "active" ? "success" : "neutral";
+  const tone = status === "active" ? "good" : "neutral";
 
   return <StatusBadge tone={tone}>{statusLabels[status]}</StatusBadge>;
 }

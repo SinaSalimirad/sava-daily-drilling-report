@@ -57,7 +57,7 @@ export function VolumeAccountingCard() {
           <div className="border-t pt-3">
             <RowBars rows={[end]} capacity={capacity} ariaLabel="End volume" />
           </div>
-          <div className="rounded-lg border border-green-200 bg-green-50 p-3 text-sm text-green-950 dark:border-green-900 dark:bg-green-950 dark:text-green-50">
+          <div className="rounded-lg border border-status-good-border bg-status-good-bg p-3 text-sm text-status-good-fg">
             <p className="flex items-center gap-1.5 font-semibold text-viz-good">
               <CheckIcon className="size-4" aria-hidden />
               {balance.title}

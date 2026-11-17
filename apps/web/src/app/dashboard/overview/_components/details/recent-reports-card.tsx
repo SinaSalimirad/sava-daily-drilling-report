@@ -14,7 +14,7 @@ function ReportStatus({ report }: { report: RecentReport }) {
   }
 
   return (
-    <StatusBadge tone="success">
+    <StatusBadge tone="good">
       Submitted
       {report.edited && (
         <span className="font-normal text-muted-foreground">· edited</span>

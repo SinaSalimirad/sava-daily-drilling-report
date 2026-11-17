@@ -7,7 +7,7 @@
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-inter);
+  --font-sans: var(--font-nunito);
   --font-mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
   --font-heading: var(--font-sans);
   --font-logo: var(--font-pacifico), cursive;
@@ -33,9 +33,22 @@
   --color-series-7: var(--series-7);
   --color-series-8: var(--series-8);
   --color-status-good: var(--status-good);
+  --color-status-good-fg: var(--status-good-fg);
+  --color-status-good-bg: var(--status-good-bg);
+  --color-status-good-border: var(--status-good-border);
   --color-status-warning: var(--status-warning);
+  --color-status-warning-fg: var(--status-warning-fg);
+  --color-status-warning-bg: var(--status-warning-bg);
+  --color-status-warning-border: var(--status-warning-border);
   --color-status-serious: var(--status-serious);
   --color-status-critical: var(--status-critical);
+  --color-status-critical-fg: var(--status-critical-fg);
+  --color-status-critical-bg: var(--status-critical-bg);
+  --color-status-critical-border: var(--status-critical-border);
+  --color-status-info: var(--status-info);
+  --color-status-info-fg: var(--status-info-fg);
+  --color-status-info-bg: var(--status-info-bg);
+  --color-status-info-border: var(--status-info-border);
   --color-viz-other: var(--viz-other);
   --color-viz-grid: var(--viz-grid);
   --color-viz-good: var(--viz-good);
@@ -77,13 +90,13 @@
   --secondary: #e8e7e1;
   --secondary-foreground: #52514e;
   --muted: #e8e7e1;
-  --muted-foreground: #898781;
+  --muted-foreground: #666560;
   --accent: #e8e7e1;
   --accent-foreground: #0b0b0b;
   --destructive: #d03b3b;
   --border: rgba(11, 11, 11, 0.1);
   --input: rgba(11, 11, 11, 0.1);
-  --ring: #898781;
+  --ring: #2a78d6;
   --chart-1: var(--series-1);
   --chart-2: var(--series-2);
   --chart-3: var(--series-3);
@@ -112,13 +125,13 @@
   --secondary: #2c2c2a;
   --secondary-foreground: #c3c2b7;
   --muted: #2c2c2a;
-  --muted-foreground: #898781;
+  --muted-foreground: #9d9b94;
   --accent: #2c2c2a;
   --accent-foreground: #f0efec;
   --destructive: #d03b3b;
   --border: rgba(255, 255, 255, 0.1);
   --input: rgba(255, 255, 255, 0.1);
-  --ring: #898781;
+  --ring: #3987e5;
   --chart-1: var(--series-1);
   --chart-2: var(--series-2);
   --chart-3: var(--series-3);
@@ -196,4 +209,71 @@
   --status-warning: #fab219;
   --status-serious: #ec835a;
   --status-critical: #d03b3b;
+}
+
+/* Surface tones for badges and callouts, derived from the status colors above.
+   -fg is the text/icon color, -bg and -border are the tinted pill/box behind it.
+   Each is a color-mix with --card so the surface follows light/dark automatically. */
+:root {
+  --status-good-fg: var(--viz-good);
+  --status-good-bg: color-mix(in srgb, var(--status-good) 12%, var(--card));
+  --status-good-border: color-mix(in srgb, var(--status-good) 38%, var(--card));
+  --status-warning-fg: #7a4b00;
+  --status-warning-bg: color-mix(
+    in srgb,
+    var(--status-warning) 12%,
+    var(--card)
+  );
+  --status-warning-border: color-mix(
+    in srgb,
+    var(--status-warning) 38%,
+    var(--card)
+  );
+  --status-critical-fg: #b42323;
+  --status-critical-bg: color-mix(
+    in srgb,
+    var(--status-critical) 12%,
+    var(--card)
+  );
+  --status-critical-border: color-mix(
+    in srgb,
+    var(--status-critical) 38%,
+    var(--card)
+  );
+  --status-info: #2a78d6;
+  --status-info-fg: #1a5ea8;
+  --status-info-bg: color-mix(in srgb, var(--status-info) 12%, var(--card));
+  --status-info-border: color-mix(in srgb, var(--status-info) 38%, var(--card));
+}
+
+.dark {
+  --status-good-fg: #6fd36f;
+  --status-good-bg: color-mix(in srgb, var(--status-good) 16%, var(--card));
+  --status-good-border: color-mix(in srgb, var(--status-good) 45%, var(--card));
+  --status-warning-fg: #f4c25b;
+  --status-warning-bg: color-mix(
+    in srgb,
+    var(--status-warning) 16%,
+    var(--card)
+  );
+  --status-warning-border: color-mix(
+    in srgb,
+    var(--status-warning) 45%,
+    var(--card)
+  );
+  --status-critical-fg: #f08a8a;
+  --status-critical-bg: color-mix(
+    in srgb,
+    var(--status-critical) 16%,
+    var(--card)
+  );
+  --status-critical-border: color-mix(
+    in srgb,
+    var(--status-critical) 45%,
+    var(--card)
+  );
+  --status-info: #3987e5;
+  --status-info-fg: #9cc3f2;
+  --status-info-bg: color-mix(in srgb, var(--status-info) 16%, var(--card));
+  --status-info-border: color-mix(in srgb, var(--status-info) 45%, var(--card));
 }

@@ -21,8 +21,8 @@ export function ApiStatus() {
   }
 
   if (status === "unreachable") {
-    return <p className="text-red-600">API unreachable</p>;
+    return <p className="text-status-critical-fg">API unreachable</p>;
   }
 
-  return <p className="text-green-600">API status: ok</p>;
+  return <p className="text-status-good-fg">API status: ok</p>;
 }
