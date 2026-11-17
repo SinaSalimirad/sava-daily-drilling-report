@@ -11,6 +11,13 @@ import {
 } from "@/app/dashboard/master-data/projects/_components/projects-columns";
 import type { Project } from "@/app/dashboard/master-data/projects/_components/projects-data";
 import { Button } from "@/components/ui/button";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 
 type ProjectsPaginationProps = {
   table: ReactTable<typeof projectsTableFeatures, Project>;
@@ -37,22 +44,30 @@ export function ProjectsPagination({ table }: ProjectsPaginationProps) {
 
       <div className="flex w-full flex-wrap items-center gap-x-8 gap-y-3 lg:w-fit">
         <div className="hidden items-center gap-2 lg:flex">
-          <label htmlFor="rows-per-page" className="text-sm font-medium">
+          <span id="rows-per-page-label" className="text-sm font-medium">
             Rows per page
-          </label>
-          {/* A native select keeps this simple: the project has no Select component yet. */}
-          <select
-            id="rows-per-page"
+          </span>
+          <Select
             value={pageSize}
-            onChange={(event) => table.setPageSize(Number(event.target.value))}
-            className="h-8 w-20 rounded-md border border-input bg-transparent px-2 text-sm shadow-xs outline-none focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50 dark:bg-input/30"
+            onValueChange={(size) => {
+              if (size !== null) table.setPageSize(size);
+            }}
           >
-            {PROJECTS_PAGE_SIZES.map((size) => (
-              <option key={size} value={size}>
-                {size}
-              </option>
-            ))}
-          </select>
+            <SelectTrigger
+              size="sm"
+              className="w-20"
+              aria-labelledby="rows-per-page-label"
+            >
+              <SelectValue />
+            </SelectTrigger>
+            <SelectContent side="top">
+              {PROJECTS_PAGE_SIZES.map((size) => (
+                <SelectItem key={size} value={size}>
+                  {size}
+                </SelectItem>
+              ))}
+            </SelectContent>
+          </Select>
         </div>
 
         <p className="text-sm font-medium">
