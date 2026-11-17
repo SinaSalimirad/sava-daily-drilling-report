@@ -1,8 +1,11 @@
-// Placeholder presets: Currency and Units should come from the API once it exists, the
-// same way `projects-data.ts` is a placeholder for the projects list.
+// Placeholder presets: Units (rig info has no backend field yet) should come
+// from the API once it exists, the same way `projects-data.ts` is a
+// placeholder for the projects list. Currency is not a placeholder: it
+// already has a shared contract (packages/schemas), so its value type comes
+// from there instead of a second, hand-written copy.
+import type { ProjectCurrency } from "schemas";
 
 export type RigType = "onshore" | "offshore";
-export type Currency = "USD" | "EUR" | "IRR";
 export type UnitsPreset = "oilfield" | "si" | "custom";
 
 export type NewProjectFormValues = {
@@ -10,7 +13,7 @@ export type NewProjectFormValues = {
   code: string;
   client: string;
   contractor: string;
-  currency: Currency;
+  currency: ProjectCurrency;
   rig: string;
   rigType: RigType;
   field: string;
@@ -35,7 +38,7 @@ export const EMPTY_NEW_PROJECT_FORM: NewProjectFormValues = {
   units: "oilfield",
 };
 
-export const CURRENCIES: { value: Currency; label: string }[] = [
+export const CURRENCIES: { value: ProjectCurrency; label: string }[] = [
   { value: "USD", label: "USD — US dollar ($)" },
   { value: "EUR", label: "EUR — Euro (€)" },
   { value: "IRR", label: "IRR — Iranian rial" },

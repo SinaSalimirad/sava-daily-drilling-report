@@ -3,7 +3,7 @@ import {
   UNIT_OPTIONS,
   UNIT_PRESETS,
   type UnitsPreset,
-} from "@/app/dashboard/master-data/projects/new/_components/new-project-types";
+} from "@/app/dashboard/master-data/projects/new/_components/new-project-data";
 import { NewProjectUnitChip } from "@/app/dashboard/master-data/projects/new/_components/new-project-unit-chip";
 
 export function NewProjectUnitsPicker({

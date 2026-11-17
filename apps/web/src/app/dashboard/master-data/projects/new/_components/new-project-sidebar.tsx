@@ -3,7 +3,7 @@ import {
   CURRENCIES,
   type NewProjectFormValues,
   UNIT_PRESETS,
-} from "@/app/dashboard/master-data/projects/new/_components/new-project-types";
+} from "@/app/dashboard/master-data/projects/new/_components/new-project-data";
 import { FormCard } from "@/components/common/form-card";
 
 const afterCreateSteps = [

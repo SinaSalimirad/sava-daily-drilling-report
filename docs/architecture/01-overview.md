@@ -32,10 +32,11 @@ flowchart LR
 
 ## Monorepo
 
-One repository with Bun workspaces (`apps/*`). Two apps today:
+One repository with Bun workspaces (`apps/*` and `packages/*`). Two apps and one shared package today:
 
 - `apps/api`: the Elysia HTTP API.
 - `apps/web`: the Next.js frontend.
+- `packages/schemas`: zod request/response contracts used by both apps, so they can never type the same thing two different ways.
 
 Shared tooling lives at the repo root: `biome.json`, `tsconfig.base.json` and the root `package.json` scripts (`dev`, `lint`, `format`, `typecheck`, `build`). See [02-folder-structure.md](02-folder-structure.md).
 

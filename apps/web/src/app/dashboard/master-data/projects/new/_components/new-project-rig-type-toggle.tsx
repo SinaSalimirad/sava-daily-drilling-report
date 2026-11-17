@@ -1,4 +1,4 @@
-import type { RigType } from "@/app/dashboard/master-data/projects/new/_components/new-project-types";
+import type { RigType } from "@/app/dashboard/master-data/projects/new/_components/new-project-data";
 
 const options: { value: RigType; label: string }[] = [
   { value: "onshore", label: "Onshore" },
