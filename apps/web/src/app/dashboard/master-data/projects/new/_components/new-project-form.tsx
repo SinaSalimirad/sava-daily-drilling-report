@@ -4,14 +4,14 @@ import { PlusIcon } from "lucide-react";
 import Link from "next/link";
 import type * as React from "react";
 import { useState } from "react";
-import { NewProjectField } from "@/app/dashboard/master-data/projects/new/_components/new-project-field";
-import { NewProjectRigTypeToggle } from "@/app/dashboard/master-data/projects/new/_components/new-project-rig-type-toggle";
-import { NewProjectSidebar } from "@/app/dashboard/master-data/projects/new/_components/new-project-sidebar";
 import {
   CURRENCIES,
   EMPTY_NEW_PROJECT_FORM,
   type NewProjectFormValues,
-} from "@/app/dashboard/master-data/projects/new/_components/new-project-types";
+} from "@/app/dashboard/master-data/projects/new/_components/new-project-data";
+import { NewProjectField } from "@/app/dashboard/master-data/projects/new/_components/new-project-field";
+import { NewProjectRigTypeToggle } from "@/app/dashboard/master-data/projects/new/_components/new-project-rig-type-toggle";
+import { NewProjectSidebar } from "@/app/dashboard/master-data/projects/new/_components/new-project-sidebar";
 import { NewProjectUnitsPicker } from "@/app/dashboard/master-data/projects/new/_components/new-project-units-picker";
 import { getNewProjectErrors } from "@/app/dashboard/master-data/projects/new/_components/new-project-validation";
 import { FormCard } from "@/components/common/form-card";

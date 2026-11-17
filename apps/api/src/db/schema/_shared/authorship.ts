@@ -6,6 +6,6 @@ import { user } from "../user.schema";
 // columns.ts and user.schema.ts broke `id`/`timestamps` at module load).
 // Spread into a table: pgTable('wells', { ...id, ...timestamps, ...authorship })
 export const authorship = {
-  createdBy: uuid("created_by").references(() => user.id),
-  updatedBy: uuid("updated_by").references(() => user.id),
+  created_by: uuid("created_by").references(() => user.id),
+  updated_by: uuid("updated_by").references(() => user.id),
 };

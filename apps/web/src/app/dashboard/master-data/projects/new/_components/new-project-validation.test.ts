@@ -1,5 +1,5 @@
 import { describe, expect, it } from "bun:test";
-import { EMPTY_NEW_PROJECT_FORM } from "@/app/dashboard/master-data/projects/new/_components/new-project-types";
+import { EMPTY_NEW_PROJECT_FORM } from "@/app/dashboard/master-data/projects/new/_components/new-project-data";
 import { getNewProjectErrors } from "@/app/dashboard/master-data/projects/new/_components/new-project-validation";
 
 describe("getNewProjectErrors", () => {

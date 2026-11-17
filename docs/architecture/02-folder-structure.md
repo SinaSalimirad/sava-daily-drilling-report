@@ -32,6 +32,8 @@ Items marked **(planned)** do not exist yet.
 │           │       │                     nav sections, breadcrumb, project switcher)
 │           │       ├── master-data/      Master Data section; /dashboard/master-data redirects to projects/
 │           │       │   └── projects/     page.tsx and _components/ (table of projects)
+│           │       │       ├── new/      New project form, its own _components/
+│           │       │       └── archive/  Archived projects list, its own _components/
 │           │       └── overview/
 │           │           ├── page.tsx
 │           │           └── _components/  Used only by the Overview page
@@ -45,6 +47,10 @@ Items marked **(planned)** do not exist yet.
 │           │   ├── ui/           shadcn and Animate UI primitives (button, dropdown-menu, toast)
 │           │   └── common/       Components shared by several routes (logo, select-pill, api-status, overview-card, status-badge)
 │           └── lib/              api-client.ts: typed Eden client for the API
+├── packages/
+│   └── schemas/                  zod contracts shared by api and web (a workspace
+│                                  package, not an app); one `<entity>.schema.ts`
+│                                  per entity, re-exported from src/index.ts
 ├── docs/
 │   ├── architecture/             This folder: overview, structure, git workflow, CI
 │   ├── adr/                      Architecture decision records
@@ -67,7 +73,7 @@ Items marked **(planned)** do not exist yet.
 
 ## Rules
 
-- **Apps do not import runtime code from each other.** The one exception is a type: web imports the `App` type from api so the Eden client is typed. Other shared code goes in a shared workspace package **(planned)**, for example `packages/contracts` with zod schemas.
+- **Apps do not import runtime code from each other.** The one exception is a type: web imports the `App` type from api so the Eden client is typed. Everything else both apps need to agree on (request/response shapes, enums) is a zod schema in `packages/schemas`, with its TypeScript type exported via `z.infer`, never written by hand a second time in `apps/web` or `apps/api`. A placeholder type in a web `*-data.ts` file that turns out to already have a `packages/schemas` schema should import its type from there instead of keeping its own copy (the two can silently drift, e.g. a different set of enum values).
 - **One root config.** Biome and the base tsconfig live at the root. Each app's `tsconfig.json` extends `tsconfig.base.json`.
 - **Scripts run from the root.** `bun run lint`, `bun run typecheck`, `bun run dev` and `bun run build` run for every app.
 - **Planned API layout.** Each feature gets a folder in `apps/api/src/<feature>/` with its routes, service and repository. Pure business calculations go in their own small module, not inside routes.
@@ -75,7 +81,7 @@ Items marked **(planned)** do not exist yet.
 - **Every page lives under `/dashboard`, and sub pages follow the nav.** The Dashboard section's items are at `/dashboard/<item>` (`/dashboard/overview`, `/dashboard/well-summary`); every other section adds its own segment: `/dashboard/<section>/<item>` (`/dashboard/master-data/projects`). The page title and breadcrumb are found by matching the URL against the section `href` (the longest match wins) and then the item slug against the item names in `_components/nav-sections.ts`.
 - **Charts use TanStack Charts.** Import from `@tanstack/charts` and its `/react`, `/scales/*` and `/tooltip` subpaths, not from the older `@tanstack/react-charts` package. A chart is a small client component that builds its definition with `useMemo`, so the data it gets must be a stable reference. Every chart sets `ariaLabel`; the library provides the tooltip and keyboard focus.
 - **Colors are tokens.** `globals.css` is the only place with hex values, each with a dark value, mapped onto the shadcn variables. Page is `--background`, cards are `--card` (so cards use `bg-card`, never `bg-background`), text is `--foreground`, secondary text `--secondary-foreground`, muted text and axes `--muted-foreground`, hairlines `--border`, dividers and grid `--muted` and `--viz-grid`, and the accent (buttons, active tab) is `--primary`. Charts use `--series-1` to `--series-8` in a fixed order that is never cycled, and a series keeps its slot when a filter changes the series count (slot 8 is reserved). Status colors (`--status-good`, `-warning`, `-serious`, `-critical`) are never used as a series and always come with an icon and a word. Charts pass `var(--series-N)`; text never takes a series color.
-- **Placeholder data has one home per section.** Until the API exists, each section keeps its numbers in one `*-data.ts` file (`summary-data.ts`, `trends-data.ts`, `details-data.ts`, `projects-data.ts`), marked as placeholder. Totals, shares and check results are meant to come from the backend, so replacing a file with a fetch must not require changing the components.
+- **Placeholder data has one home per section.** Until the API exists, each section keeps its numbers in one `*-data.ts` file (`summary-data.ts`, `trends-data.ts`, `details-data.ts`, `projects-data.ts`, `new-project-data.ts`), marked as placeholder. Totals, shares and check results are meant to come from the backend, so replacing a file with a fetch must not require changing the components.
 - **Cards must be able to shrink.** Wide tables sit in an `overflow-x-auto` wrapper, and the card frame (`OverviewCard`) has `min-w-0`, so a wide table scrolls inside its card instead of stretching the page.
 - **Environment files.** `.env` is git-ignored and `.env.example` documents the variables. Each app has its own pair inside its folder.
 - **Migrations.** SQL files in `apps/api/src/db/migrations` are generated by drizzle-kit (`bun run db:generate` in `apps/api`) and committed. Never edit one that is already on `main`. `bun run db:migrate` applies them with `drizzle-orm`'s migrator (`src/db/migrate.ts`), not drizzle-kit, so it also works in the production image, which has no dev dependencies.

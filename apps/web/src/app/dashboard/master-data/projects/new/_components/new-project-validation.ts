@@ -1,4 +1,4 @@
-import type { NewProjectFormValues } from "@/app/dashboard/master-data/projects/new/_components/new-project-types";
+import type { NewProjectFormValues } from "@/app/dashboard/master-data/projects/new/_components/new-project-data";
 
 export type NewProjectFieldErrors = Partial<
   Record<"name" | "client" | "contractor" | "rig", string>

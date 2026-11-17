@@ -7,10 +7,10 @@ export const id = {
 };
 
 export const timestamps = {
-  createdAt: timestamp("created_at", { withTimezone: true })
+  created_at: timestamp("created_at", { withTimezone: true })
     .notNull()
     .defaultNow(),
-  updatedAt: timestamp("updated_at", { withTimezone: true })
+  updated_at: timestamp("updated_at", { withTimezone: true })
     .notNull()
     .defaultNow()
     .$onUpdate(() => new Date()),
