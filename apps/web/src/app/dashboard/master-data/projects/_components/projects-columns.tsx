@@ -1,4 +1,9 @@
-import { createColumnHelper, tableFeatures } from "@tanstack/react-table";
+import {
+  createColumnHelper,
+  createPaginatedRowModel,
+  rowPaginationFeature,
+  tableFeatures,
+} from "@tanstack/react-table";
 import type { ReactNode } from "react";
 import { ProjectActions } from "@/app/dashboard/master-data/projects/_components/project-actions";
 import type {
@@ -7,9 +12,16 @@ import type {
 } from "@/app/dashboard/master-data/projects/_components/projects-data";
 import { StatusBadge } from "@/components/common/status-badge";
 
-// Core features only: this table has no sorting, filtering or pagination yet.
+// Pagination only: this table has no sorting or filtering yet. The paginated row model
+// slices the rows in the browser; replace it with `manualPagination` when the API paginates.
 // Keep it at module scope so the table does not rebuild its models on every render.
-export const projectsTableFeatures = tableFeatures({});
+export const projectsTableFeatures = tableFeatures({
+  rowPaginationFeature,
+  paginatedRowModel: createPaginatedRowModel(),
+});
+
+export const PROJECTS_DEFAULT_PAGE_SIZE = 5;
+export const PROJECTS_PAGE_SIZES = [PROJECTS_DEFAULT_PAGE_SIZE, 10, 20, 50];
 
 const statusLabels: Record<ProjectStatus, string> = {
   active: "Active",

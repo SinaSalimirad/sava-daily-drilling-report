@@ -2,10 +2,12 @@
 
 import { useTable } from "@tanstack/react-table";
 import {
+  PROJECTS_DEFAULT_PAGE_SIZE,
   projectsColumns,
   projectsTableFeatures,
 } from "@/app/dashboard/master-data/projects/_components/projects-columns";
 import { projects } from "@/app/dashboard/master-data/projects/_components/projects-data";
+import { ProjectsPagination } from "@/app/dashboard/master-data/projects/_components/projects-pagination";
 import { OverviewCard } from "@/components/common/overview-card";
 import { ScrollArea } from "@/components/ui/scroll-area";
 
@@ -25,7 +27,7 @@ const columnWidths: Record<string, number> = {
 const tableMinWidth = Object.values(columnWidths).reduce((a, b) => a + b, 0);
 
 // Columns that are left-aligned; every other column is centered.
-const leftAlignedColumnIds = new Set(["name", "client", "actions"]);
+const leftAlignedColumnIds = new Set(["name", "client", "field", "actions"]);
 
 // `px-3` is the gap between columns; the first and last column keep the card's own edge.
 const cellClass = (columnId: string) =>
@@ -43,6 +45,9 @@ export function ProjectsTableCard() {
     features: projectsTableFeatures,
     columns: projectsColumns,
     data: projects,
+    initialState: {
+      pagination: { pageIndex: 0, pageSize: PROJECTS_DEFAULT_PAGE_SIZE },
+    },
   });
 
   return (
@@ -106,6 +111,7 @@ export function ProjectsTableCard() {
           </table>
         </div>
       </ScrollArea>
+      <ProjectsPagination table={table} />
     </OverviewCard>
   );
 }
