@@ -29,7 +29,8 @@ const statusLabels: Record<ProjectStatus, string> = {
   completed: "Completed",
 };
 
-function ProjectStatusBadge({ status }: { status: ProjectStatus }) {
+// Shared with the project detail header, so a project's status always reads the same way.
+export function ProjectStatusBadge({ status }: { status: ProjectStatus }) {
   const tone = status === "active" ? "good" : "neutral";
 
   return <StatusBadge tone={tone}>{statusLabels[status]}</StatusBadge>;
