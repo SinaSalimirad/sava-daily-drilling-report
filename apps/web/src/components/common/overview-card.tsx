@@ -28,7 +28,7 @@ export function OverviewCard({
           <span className="text-xs text-muted-foreground">{subtitle}</span>
         )}
         {meta && (
-          <span className="ml-auto text-xs font-medium text-muted-foreground">
+          <span className="ml-auto self-center text-xs font-medium text-muted-foreground">
             {meta}
           </span>
         )}
