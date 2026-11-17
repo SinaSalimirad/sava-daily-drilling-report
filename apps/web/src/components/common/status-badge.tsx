@@ -1,11 +1,13 @@
 import { cn } from "cn";
 
 const tones = {
+  good: "border border-status-good-border bg-status-good-bg text-status-good-fg",
   warning:
-    "border border-amber-300 bg-amber-50 text-amber-900 dark:border-amber-700 dark:bg-amber-950 dark:text-amber-100",
-  success:
-    "border border-green-300 bg-green-50 text-green-900 dark:border-green-800 dark:bg-green-950 dark:text-green-100",
-  neutral: "border bg-muted text-muted-foreground",
+    "border border-status-warning-border bg-status-warning-bg text-status-warning-fg",
+  critical:
+    "border border-status-critical-border bg-status-critical-bg text-status-critical-fg",
+  info: "border border-status-info-border bg-status-info-bg text-status-info-fg",
+  neutral: "border bg-secondary text-secondary-foreground",
 };
 
 // A small pill. A dot is added to the warning tone so the state is not color-only.
