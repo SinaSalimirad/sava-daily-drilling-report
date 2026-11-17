@@ -1,4 +1,11 @@
-import { EllipsisIcon, EyeIcon } from "lucide-react";
+import {
+  ArchiveIcon,
+  CheckIcon,
+  EllipsisIcon,
+  EyeIcon,
+  PencilIcon,
+  Trash2Icon,
+} from "lucide-react";
 import type { Project } from "@/app/dashboard/master-data/projects/_components/projects-data";
 import { Button } from "@/components/ui/button";
 import {
@@ -11,14 +18,15 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 
-// The row menu. Edit and Delete have no handlers yet: add them together with the
-// edit sheet and the delete dialog, and keep those outside the menu content
-// (the content unmounts when the menu closes, which would close them too).
+// The row actions: a view button and a menu. None of them has a handler yet. Add them
+// together with the edit sheet, the archive and delete dialogs and the project detail
+// page, and render those dialogs outside the menu content (it unmounts when the menu
+// closes, which would close them too).
 export function ProjectActions({ project }: { project: Project }) {
   return (
     <div className="flex items-center justify-center gap-1">
       <Button variant="ghost" size="icon" className="size-8">
-        <EyeIcon className="size-4" />
+        <EyeIcon />
         <span className="sr-only">View {project.name}</span>
       </Button>
 
@@ -26,19 +34,37 @@ export function ProjectActions({ project }: { project: Project }) {
         <DropdownMenuTrigger
           render={<Button variant="ghost" size="icon" className="size-8" />}
         >
+          <EllipsisIcon />
           <span className="sr-only">Open menu for {project.name}</span>
-          <EllipsisIcon className="size-4" />
         </DropdownMenuTrigger>
 
-        <DropdownMenuContent align="end">
+        <DropdownMenuContent align="end" className="w-44">
           <DropdownMenuGroup>
             <DropdownMenuLabel>Project actions</DropdownMenuLabel>
-            <DropdownMenuItem>Edit project</DropdownMenuItem>
-            <DropdownMenuSeparator />
-            <DropdownMenuItem variant="destructive">
-              Delete project
+            <DropdownMenuItem>
+              <CheckIcon />
+              Set as current
+            </DropdownMenuItem>
+            <DropdownMenuItem>
+              <EyeIcon />
+              View details
+            </DropdownMenuItem>
+
+            <DropdownMenuItem>
+              <PencilIcon />
+              Edit project
+            </DropdownMenuItem>
+            <DropdownMenuItem>
+              <ArchiveIcon />
+              Archive project
             </DropdownMenuItem>
           </DropdownMenuGroup>
+          <DropdownMenuSeparator />
+          {/* Delete is apart from the safe actions, and red, so it is not clicked by mistake. */}
+          <DropdownMenuItem variant="destructive">
+            <Trash2Icon />
+            Delete project
+          </DropdownMenuItem>
         </DropdownMenuContent>
       </DropdownMenu>
     </div>

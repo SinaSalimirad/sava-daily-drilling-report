@@ -17,9 +17,9 @@ export function ProjectsToolbar() {
           nativeButton={false}
           render={<Link href="/dashboard/master-data/projects/archive" />}
         >
-          <ArchiveIcon data-icon="inline-start" />
+          <ArchiveIcon data-icon="inline-start" strokeWidth={1.5} />
           Archive projects
-          <span className="rounded-md bg-muted px-1.5 py-0.5 text-xs font-medium text-muted-foreground tabular-nums">
+          <span className="ml-1.5 inline-flex items-center justify-center rounded-md bg-muted px-[7px] py-px text-[11.5px] font-medium text-muted-foreground tabular-nums">
             {archivedProjects.length}
           </span>
         </Button>
