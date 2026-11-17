@@ -1,4 +1,3 @@
-import { OverviewCard } from "@/app/dashboard/overview/_components/overview-card";
 import {
   ROW_HEIGHT,
   RowBarsChart,
@@ -7,6 +6,7 @@ import {
   type PitKind,
   surfacePits,
 } from "@/app/dashboard/overview/_components/trends/trends-data";
+import { OverviewCard } from "@/components/common/overview-card";
 
 const kindFill: Record<PitKind, string> = {
   active: "var(--series-1)",

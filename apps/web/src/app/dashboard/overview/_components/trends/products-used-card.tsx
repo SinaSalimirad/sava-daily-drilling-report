@@ -1,6 +1,6 @@
-import { OverviewCard } from "@/app/dashboard/overview/_components/overview-card";
-import { StatusBadge } from "@/app/dashboard/overview/_components/status-badge";
 import { productsUsed } from "@/app/dashboard/overview/_components/trends/trends-data";
+import { OverviewCard } from "@/components/common/overview-card";
+import { StatusBadge } from "@/components/common/status-badge";
 
 const headerClass =
   "pb-3 pl-4 text-xs font-medium tracking-wide whitespace-nowrap text-muted-foreground uppercase";

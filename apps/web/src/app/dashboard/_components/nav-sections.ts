@@ -31,31 +31,31 @@ export const sections: NavSection[] = [
   },
   {
     label: "Daily Reports",
-    href: "/daily-reports",
+    href: "/dashboard/daily-reports",
     icon: ClipboardListIcon,
     items: ["Report list", "Report editor", "Activities", "Remarks"],
   },
   {
     label: "Fluid Properties",
-    href: "/fluid-properties",
+    href: "/dashboard/fluid-properties",
     icon: FlaskConicalIcon,
     items: ["Mud samples", "Rheology", "Solids analysis", "Salt tables"],
   },
   {
     label: "Volumes & Pits",
-    href: "/volumes-and-pits",
+    href: "/dashboard/volumes-and-pits",
     icon: CylinderIcon,
     items: ["Pit readings", "Volume accounting", "Losses"],
   },
   {
     label: "Inventory & Cost",
-    href: "/inventory-and-cost",
+    href: "/dashboard/inventory-and-cost",
     icon: BoxesIcon,
     items: ["Stock", "Products used", "Price list", "Cost"],
   },
   {
     label: "Hydraulics",
-    href: "/hydraulics",
+    href: "/dashboard/hydraulics",
     icon: DropletsIcon,
     items: [
       "Wellbore geometry",
@@ -67,13 +67,13 @@ export const sections: NavSection[] = [
   },
   {
     label: "Recap",
-    href: "/recap",
+    href: "/dashboard/recap",
     icon: ChartNoAxesCombinedIcon,
     items: ["Section recap", "Well recap", "Charts"],
   },
   {
     label: "Master Data",
-    href: "/master-data",
+    href: "/dashboard/master-data",
     icon: BookTextIcon,
     items: [
       "Projects",
@@ -87,7 +87,7 @@ export const sections: NavSection[] = [
   },
   {
     label: "Settings & Integrations",
-    href: "/settings",
+    href: "/dashboard/settings",
     icon: SettingsIcon,
     items: ["General", "Integrations"],
   },
@@ -100,10 +100,12 @@ const toSlug = (label: string) =>
     .replace(/[^a-z0-9]+/g, "-")
     .replace(/^-|-$/g, "");
 
+// Every section URL starts with the Dashboard one ("/dashboard"), so the longest match wins:
+// /dashboard/master-data/projects belongs to Master Data, not to Dashboard.
 function findSection(pathname: string) {
-  return sections.find(
-    ({ href }) => pathname === href || pathname.startsWith(`${href}/`),
-  );
+  return sections
+    .filter(({ href }) => pathname === href || pathname.startsWith(`${href}/`))
+    .sort((a, b) => b.href.length - a.href.length)[0];
 }
 
 // The section that matches the current URL, e.g. /dashboard/overview -> Dashboard.

@@ -28,7 +28,7 @@ flowchart LR
 - The web app is client-only: Next.js serves the app, but all code that calls the API runs in the browser. There is no server-side rendering or data fetching in Next.js.
 - The browser calls the API directly, so the API allows the web origin through CORS (`WEB_ORIGIN`).
 - Only the API talks to the database. The web app never queries Postgres directly.
-- The database layer **(planned)** lives in `apps/api/src/db`. Drizzle config already points there.
+- The database layer lives in `apps/api/src/db`: a `pg` connection pool, the Drizzle client (`db`), and the schema. It has no tables yet. Tables, repositories and the controller -> service -> repository layering are **(planned)**.
 
 ## Monorepo
 

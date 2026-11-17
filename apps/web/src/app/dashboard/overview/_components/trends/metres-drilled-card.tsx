@@ -1,6 +1,6 @@
-import { OverviewCard } from "@/app/dashboard/overview/_components/overview-card";
 import { MetresBarChart } from "@/app/dashboard/overview/_components/trends/metres-bar-chart";
 import { metresDrilled } from "@/app/dashboard/overview/_components/trends/trends-data";
+import { OverviewCard } from "@/components/common/overview-card";
 
 const { axisMax, ticks, average, reports } = metresDrilled;
 

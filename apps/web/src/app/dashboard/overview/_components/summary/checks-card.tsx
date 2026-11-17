@@ -1,9 +1,9 @@
 import { CheckIcon, InfoIcon, TriangleAlertIcon } from "lucide-react";
-import { OverviewCard } from "@/app/dashboard/overview/_components/overview-card";
 import {
   type CheckLevel,
   checks,
 } from "@/app/dashboard/overview/_components/summary/summary-data";
+import { OverviewCard } from "@/components/common/overview-card";
 import { Button } from "@/components/ui/button";
 
 // The icon and its label carry the level, so color is never the only signal.

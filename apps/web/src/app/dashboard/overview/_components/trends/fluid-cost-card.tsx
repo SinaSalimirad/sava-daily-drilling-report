@@ -1,10 +1,10 @@
-import { OverviewCard } from "@/app/dashboard/overview/_components/overview-card";
 import { seriesBg } from "@/app/dashboard/overview/_components/trends/series";
 import {
   ShareBarChart,
   type SharePart,
 } from "@/app/dashboard/overview/_components/trends/share-bar-chart";
 import { fluidCost } from "@/app/dashboard/overview/_components/trends/trends-data";
+import { OverviewCard } from "@/components/common/overview-card";
 
 const parts: (SharePart & { dot: string })[] = fluidCost.byProduct.map(
   ({ label, share, series }) => ({

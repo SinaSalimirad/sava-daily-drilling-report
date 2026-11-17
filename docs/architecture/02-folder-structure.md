@@ -13,9 +13,12 @@ Items marked **(planned)** do not exist yet.
 │   │       ├── app.ts            Builds the Elysia app (no listen, so tests can use it)
 │   │       ├── config/
 │   │       │   └── env.ts        zod-validated environment variables
-│   │       └── db/               (planned)
+│   │       └── db/
+│   │           ├── index.ts      pg pool, Drizzle client `db`, `Transaction` type, `closeDb()`
+│   │           ├── migrate.ts    Applies the committed migrations (`bun run db:migrate`)
 │   │           ├── schema/       Drizzle table definitions, exported from index.ts
-│   │           └── migrations/   Generated SQL, committed
+│   │           │   └── _shared/  Column helpers to spread into tables (`id`, `timestamps`)
+│   │           └── migrations/   Generated SQL, committed (planned: created by the first `db:generate`)
 │   └── web/                      Next.js frontend
 │       ├── Dockerfile            Web image (build context is the repo root)
 │       ├── public/               Static assets
@@ -27,6 +30,8 @@ Items marked **(planned)** do not exist yet.
 │           │       ├── page.tsx          Redirects to /dashboard/overview
 │           │       ├── _components/      Used only inside /dashboard (header, main nav,
 │           │       │                     nav sections, breadcrumb, project switcher)
+│           │       ├── master-data/      Master Data section; /dashboard/master-data redirects to projects/
+│           │       │   └── projects/     page.tsx and _components/ (table of projects)
 │           │       └── overview/
 │           │           ├── page.tsx
 │           │           └── _components/  Used only by the Overview page
@@ -38,7 +43,7 @@ Items marked **(planned)** do not exist yet.
 │           │               └── details/   Hydraulics, solids analysis, recent reports
 │           ├── components/
 │           │   ├── ui/           shadcn and Animate UI primitives (button, dropdown-menu, toast)
-│           │   └── common/       Components shared by several routes (logo, select-pill, api-status)
+│           │   └── common/       Components shared by several routes (logo, select-pill, api-status, overview-card, status-badge)
 │           └── lib/              api-client.ts: typed Eden client for the API
 ├── docs/
 │   ├── architecture/             This folder: overview, structure, git workflow, CI
@@ -67,10 +72,11 @@ Items marked **(planned)** do not exist yet.
 - **Scripts run from the root.** `bun run lint`, `bun run typecheck`, `bun run dev` and `bun run build` run for every app.
 - **Planned API layout.** Each feature gets a folder in `apps/api/src/<feature>/` with its routes, service and repository. Pure business calculations go in their own small module, not inside routes.
 - **Web components live next to where they are used.** A component used by one route goes in that route's `_components/` folder (the underscore keeps the folder out of the URL). Move it to `components/common/` only when a second route needs it. `components/ui/` is for generic primitives with no app knowledge.
-- **Sub pages follow the nav.** A nav item such as "Well summary" lives at `/dashboard/well-summary`, because the page title and breadcrumb are found by matching the URL segment against the item names in `_components/nav-sections.ts`.
+- **Every page lives under `/dashboard`, and sub pages follow the nav.** The Dashboard section's items are at `/dashboard/<item>` (`/dashboard/overview`, `/dashboard/well-summary`); every other section adds its own segment: `/dashboard/<section>/<item>` (`/dashboard/master-data/projects`). The page title and breadcrumb are found by matching the URL against the section `href` (the longest match wins) and then the item slug against the item names in `_components/nav-sections.ts`.
 - **Charts use TanStack Charts.** Import from `@tanstack/charts` and its `/react`, `/scales/*` and `/tooltip` subpaths, not from the older `@tanstack/react-charts` package. A chart is a small client component that builds its definition with `useMemo`, so the data it gets must be a stable reference. Every chart sets `ariaLabel`; the library provides the tooltip and keyboard focus.
 - **Colors are tokens.** `globals.css` is the only place with hex values, each with a dark value, mapped onto the shadcn variables. Page is `--background`, cards are `--card` (so cards use `bg-card`, never `bg-background`), text is `--foreground`, secondary text `--secondary-foreground`, muted text and axes `--muted-foreground`, hairlines `--border`, dividers and grid `--muted` and `--viz-grid`, and the accent (buttons, active tab) is `--primary`. Charts use `--series-1` to `--series-8` in a fixed order that is never cycled, and a series keeps its slot when a filter changes the series count (slot 8 is reserved). Status colors (`--status-good`, `-warning`, `-serious`, `-critical`) are never used as a series and always come with an icon and a word. Charts pass `var(--series-N)`; text never takes a series color.
 - **Placeholder data has one home per section.** Until the API exists, each section keeps its numbers in one `*-data.ts` file (`summary-data.ts`, `trends-data.ts`, `details-data.ts`), marked as placeholder. Totals, shares and check results are meant to come from the backend, so replacing a file with a fetch must not require changing the components.
 - **Cards must be able to shrink.** Wide tables sit in an `overflow-x-auto` wrapper, and the card frame (`OverviewCard`) has `min-w-0`, so a wide table scrolls inside its card instead of stretching the page.
 - **Environment files.** `.env` is git-ignored and `.env.example` documents the variables. Each app has its own pair inside its folder.
-- **Migrations.** SQL files in `apps/api/src/db/migrations` are generated by drizzle-kit and committed. Never edit one that is already on `main`.
+- **Migrations.** SQL files in `apps/api/src/db/migrations` are generated by drizzle-kit (`bun run db:generate` in `apps/api`) and committed. Never edit one that is already on `main`. `bun run db:migrate` applies them with `drizzle-orm`'s migrator (`src/db/migrate.ts`), not drizzle-kit, so it also works in the production image, which has no dev dependencies.
+- **Database client.** `casing: "snake_case"` is set in both `drizzle.config.ts` and `src/db/index.ts`; keep them equal, or drizzle-kit and the running API disagree on column names. The pool size comes from `DB_POOL_MAX`. Scripts and tests that open the pool call `closeDb()` at the end, and the API calls it on SIGTERM and SIGINT.
