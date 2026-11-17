@@ -1,17 +1,20 @@
 import { StatusBadge } from "@/components/common/status-badge";
 
 // The frame every trend shares: a title, an optional subtitle, and the content.
+// `actions` are controls (a search box, for example) at the right end of the header.
 export function OverviewCard({
   title,
   subtitle,
   meta,
   version,
+  actions,
   children,
 }: {
   title: string;
   subtitle?: string;
   meta?: string;
   version?: string;
+  actions?: React.ReactNode;
   children: React.ReactNode;
 }) {
   return (
@@ -31,6 +34,11 @@ export function OverviewCard({
         )}
         {version && (
           <StatusBadge className={meta ? "" : "ml-auto"}>{version}</StatusBadge>
+        )}
+        {actions && (
+          <div className={`self-center ${meta || version ? "" : "ml-auto"}`}>
+            {actions}
+          </div>
         )}
       </header>
       {children}
