@@ -6,6 +6,7 @@ import {
   PencilIcon,
   Trash2Icon,
 } from "lucide-react";
+import Link from "next/link";
 import type { Project } from "@/app/dashboard/master-data/projects/_components/projects-data";
 import { Button } from "@/components/ui/button";
 import {
@@ -18,14 +19,22 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 
-// The row actions: a view button and a menu. None of them has a handler yet. Add them
-// together with the edit sheet, the archive and delete dialogs and the project detail
-// page, and render those dialogs outside the menu content (it unmounts when the menu
-// closes, which would close them too).
+// The row actions: a view button and a menu. Only the view button and "View details" go
+// to the project detail page; the rest has no handler yet. Add them together with the
+// edit sheet and the archive and delete dialogs, and render those dialogs outside the
+// menu content (it unmounts when the menu closes, which would close them too).
 export function ProjectActions({ project }: { project: Project }) {
+  const detailHref = `/dashboard/master-data/projects/${project.id}`;
+
   return (
     <div className="flex items-center justify-center gap-1">
-      <Button variant="ghost" size="icon" className="size-8">
+      <Button
+        variant="ghost"
+        size="icon"
+        className="size-8"
+        nativeButton={false}
+        render={<Link href={detailHref} />}
+      >
         <EyeIcon />
         <span className="sr-only">View {project.name}</span>
       </Button>
@@ -45,7 +54,7 @@ export function ProjectActions({ project }: { project: Project }) {
               <CheckIcon />
               Set as current
             </DropdownMenuItem>
-            <DropdownMenuItem>
+            <DropdownMenuItem render={<Link href={detailHref} />}>
               <EyeIcon />
               View details
             </DropdownMenuItem>
