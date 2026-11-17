@@ -100,6 +100,10 @@ const toSlug = (label: string) =>
     .replace(/[^a-z0-9]+/g, "-")
     .replace(/^-|-$/g, "");
 
+// The URL of a sub page, e.g. (Master Data, "Projects") -> /dashboard/master-data/projects.
+export const getItemHref = (section: NavSection, item: string) =>
+  `${section.href}/${toSlug(item)}`;
+
 // Every section URL starts with the Dashboard one ("/dashboard"), so the longest match wins:
 // /dashboard/master-data/projects belongs to Master Data, not to Dashboard.
 function findSection(pathname: string) {
